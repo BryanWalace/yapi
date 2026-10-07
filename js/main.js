@@ -188,6 +188,76 @@ function initLightbox() {
   });
 }
 
+/* === Entrada suave dos elementos (fade + 16px) === */
+const REVEAL_TARGETS = [
+  '.slide .section-head > *', '.estrutura-text > *',
+  '.centro-text > p', '.insercao-text > p', '.viab-text > p', '.principios-text > p',
+  '.local-text > *', '.areas-note > *', '.side-text > *', '.consult-intro > *',
+  '.areas-table-wrap', '.local-map', '.bleed', '.photo-pair figure', '.apoio-photos figure',
+  '.stat', '.support-list > li', '.viab-list > li', '.value', '.card', '.contato-panel > *',
+].join(',');
+
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+function initReveal() {
+  if (reducedMotion.matches || !('IntersectionObserver' in window)) return;
+  const items = [...document.querySelectorAll(REVEAL_TARGETS)];
+
+  // Atraso escalonado de 80ms entre irmãos revelados
+  items.forEach((el) => {
+    const siblings = [...el.parentElement.children].filter((s) => items.includes(s));
+    el.style.transitionDelay = `${Math.min(siblings.indexOf(el), 6) * 80}ms`;
+    el.classList.add('reveal');
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-in');
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.15 });
+  items.forEach((el) => observer.observe(el));
+}
+
+/* === Contadores da S3 (7, 9, +450 mil, 53, +5.000) === */
+const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+
+function formatCount(el, value) {
+  const { prefix = '', suffix = '' } = el.dataset;
+  return prefix + Math.round(value).toLocaleString('pt-BR') + suffix;
+}
+
+function runCounter(el, duration) {
+  const target = Number(el.dataset.count);
+  const start = performance.now();
+  function frame(now) {
+    const t = Math.min((now - start) / duration, 1);
+    el.textContent = formatCount(el, target * easeOutCubic(t));
+    if (t < 1) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+
+function initCounters() {
+  const section = document.getElementById('numeros');
+  const counters = section ? [...section.querySelectorAll('[data-count]')] : [];
+  if (!counters.length || reducedMotion.matches || !('IntersectionObserver' in window)) return;
+
+  counters.forEach((el) => { el.textContent = formatCount(el, 0); });
+
+  // 40% da seção visível (ou o máximo possível, se a seção for mais alta que a tela)
+  const ratio = Math.min(0.4, (window.innerHeight / section.offsetHeight) * 0.9);
+  const observer = new IntersectionObserver((entries) => {
+    if (!entries.some((entry) => entry.isIntersecting)) return;
+    observer.disconnect();
+    counters.forEach((el) => runCounter(el, 1400));
+  }, { threshold: ratio });
+  observer.observe(section);
+}
+
 initHeader();
 initMenu();
 initLightbox();
+initReveal();
+initCounters();

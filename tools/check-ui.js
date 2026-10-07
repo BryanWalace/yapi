@@ -77,13 +77,31 @@ function check(name, ok, extra = '') {
   await page.mouse.click(30, 120);
   check('clique fora fecha', await page.$eval('.lightbox', (b) => b.hidden));
 
-  // Contadores (P7) — só se existirem
-  if (await page.$('[data-count].is-counted, [data-count]')) {
-    await page.evaluate(() => window.scrollTo(0, document.getElementById('numeros').offsetTop));
-    await page.waitForTimeout(2000);
-    const nums = await page.$$eval('#numeros [data-count]', (els) => els.map((e) => e.textContent));
-    check('contadores terminam nos valores finais', nums.join('|') === '7|9|+450 mil|53|+5.000', nums.join('|'));
-  }
+  // Contadores e reveal (P7) — página nova, sem rolar antes
+  const c = await browser.newPage({ viewport: { width: 1456, height: 819 } });
+  c.on('pageerror', (e) => errors.push(e.message));
+  await c.goto(url, { waitUntil: 'networkidle' });
+  const before = await c.$eval('#numeros [data-count="5000"]', (e) => e.textContent);
+  check('contador começa em zero', before === '+0', before);
+  check('reveal aplicado fora da tela', await c.$eval('#numeros .stat', (e) => e.classList.contains('reveal') && !e.classList.contains('is-in')));
+  await c.evaluate(() => window.scrollTo(0, document.getElementById('numeros').offsetTop));
+  await c.waitForTimeout(450);
+  const mid = await c.$eval('#numeros [data-count="5000"]', (e) => e.textContent);
+  check('contador em andamento', mid !== '+0' && mid !== '+5.000', mid);
+  await c.waitForTimeout(1600);
+  const nums = await c.$$eval('#numeros [data-count]', (els) => els.map((e) => e.textContent));
+  check('contadores terminam nos valores finais', nums.join('|') === '7|9|+450 mil|53|+5.000', nums.join('|'));
+  check('reveal concluído na S3', await c.$eval('#numeros .stat', (e) => e.classList.contains('is-in')));
+  const z = await c.$eval('.section-head', (e) => e.closest('section').id);
+  check('S12 mantém centralização com reveal', await c.evaluate(() => {
+    const li = document.querySelector('.support-list li');
+    li.scrollIntoView();
+    return getComputedStyle(li.querySelector('.support-title')).transform !== 'none';
+  }), z);
+  const rm = await browser.newPage({ viewport: { width: 1456, height: 819 }, reducedMotion: 'reduce' });
+  await rm.goto(url, { waitUntil: 'networkidle' });
+  check('reduced motion: sem reveal', (await rm.$$('.reveal')).length === 0);
+  check('reduced motion: números já finais', (await rm.$eval('#numeros [data-count="5000"]', (e) => e.textContent)) === '+5.000');
 
   // ---------- Mobile ----------
   const m = await browser.newPage({ viewport: { width: 375, height: 740 }, isMobile: true, hasTouch: true });

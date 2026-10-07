@@ -226,9 +226,10 @@ figure img,
   margin-top: 40px;
 }
 .stat-num {
-  font-size: var(--fs-stat);
+  font-size: min(var(--fs-stat), 8.4vw); /* "+450 mil" cabe na coluna do 2×2 no mobile */
   font-weight: 700;
   line-height: 1;
+  white-space: nowrap;
   letter-spacing: -0.02em;
   color: var(--c-beige);
 }
@@ -1100,14 +1101,25 @@ html.is-locked body { overflow: hidden; }
   .section:not(.section--hero) { padding-top: 96px; padding-bottom: 64px; }
 }
 
-/* === Movimento (DESIGN §7) — a classe é aplicada pelo JS === */
+/* === Movimento (DESIGN §7) — a classe é aplicada pelo JS ===
+   Usa a propriedade `translate` (e não `transform`) para não desfazer os
+   `transform` de posicionamento (S12, S16); o efeito visual é o mesmo. */
 .reveal {
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity .6s ease-out, transform .6s ease-out;
+  translate: 0 16px;
+  transition: opacity .6s ease-out, translate .6s ease-out;
 }
-.reveal.is-in { opacity: 1; transform: none; }
+.reveal.is-in { opacity: 1; translate: none; }
+
+/* Hero: leve zoom-out da foto no carregamento */
+@keyframes hero-zoom {
+  from { transform: scale(1.06); }
+  to   { transform: none; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero-media img { animation: hero-zoom 2.5s ease-out both; }
+}
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transform: none; transition: none; }
+  .reveal { opacity: 1; translate: none; transition: none; }
 }

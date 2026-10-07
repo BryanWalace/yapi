@@ -56,3 +56,11 @@ Registro das etapas P2–P12 (PROMPTS.md), decisões e pendências.
 - WhatsApp flutuante: círculo 56px `--c-gold`, ícone `--c-paper`, `aria-label`.
 - Lightbox: cada `img[data-lightbox]` vira `<button class="zoom">` (teclado); diálogo `aria-modal`, ESC/clique fora fecham, ← → navegam entre as fotos da mesma seção, foco preso e devolvido à foto. Botões em texto ("Anterior", "Próxima", "Fechar") para não usar ícones genéricos (CLAUDE.md §7).
 - `tools/check-ui.js`: 27 verificações automáticas (header, link ativo, lightbox, menu, âncoras, scroll horizontal, console) — todas passando.
+
+### P7 — Animações ✅
+- `.reveal` (fade + 16px, 600ms ease-out) aplicado pelo JS a eyebrow, títulos, parágrafos, fotos, itens de lista, números, valores e cards, via IntersectionObserver (threshold 0,15), com atraso escalonado de 80ms entre irmãos (máx. 480ms). O hero não recebe reveal (não atrasar o LCP).
+- **Decisão:** o deslocamento usa a propriedade CSS `translate` em vez de `transform` (DESIGN §7), porque vários elementos já usam `transform` para se posicionar (S12, S16); o efeito visual é idêntico.
+- Contadores da S3: easeOutCubic, 1,4s, `toLocaleString('pt-BR')` (5.000), prefixo/sufixo por `data-prefix`/`data-suffix`; disparam uma vez com 40% da seção visível (ou o máximo possível se a seção for mais alta que a tela). O HTML já traz os valores finais (sem JS/SEO).
+- Hero: zoom-out 1,06 → 1 em 2,5s.
+- `prefers-reduced-motion`: sem reveal, sem contador animado, sem zoom, sem scroll suave.
+- Bug encontrado pelo teste: no mobile "+450 mil" quebrava em 2 linhas e a contagem mudava a altura da página (âncoras deslocadas em 41px). Números com `white-space: nowrap` e `min(var(--fs-stat), 8.4vw)`.
