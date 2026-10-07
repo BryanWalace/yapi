@@ -1,8 +1,10 @@
 /* ==========================================================================
    YAPI Pesquisa Clínica — estilos
    Tokens: DESIGN.md §1 (cores) e §2 (tipografia)
+   Desktop (≥1200px): cada seção reproduz o slide 1456×819; posições em % do slide.
    ========================================================================== */
 
+/* === Tokens === */
 :root {
   /* Fundos */
   --c-paper:      #F8F5F0; /* fundo claro padrão (slides 2,4,5,6,8–11,14,16) */
@@ -41,25 +43,24 @@
   --fs-h2:      clamp(1.6rem, 2.5vw, 2.4rem);
   --fs-h3:      clamp(1.35rem, 2.05vw, 2rem);
   --fs-lead:    clamp(1.2rem, 2.05vw, 1.9rem);
-  --fs-body:    clamp(1rem, 1.6vw, 1.45rem);
+  --fs-body:    clamp(1rem, 1.65vw, 1.5rem);   /* 24px medido no slide (DESIGN: 23) */
   --fs-small:   clamp(.95rem, 1.3vw, 1.2rem);
   --fs-eyebrow: clamp(.72rem, 1.03vw, .95rem);
   --fs-foot:    clamp(.65rem, .9vw, .8rem);
 
-  --lh-title: 1.1;
-  --lh-body:  1.35;
-  --ls-title: -0.01em;
+  --lh-title: 1.12;
+  --lh-body:  1.25; /* medido nos slides (29px para 23px) */
+  --ls-title: -0.025em; /* medido: títulos do slide ~2,5% mais justos */
 
   /* Grade */
-  --gutter:      clamp(20px, 4.6vw, 80px);  /* 67px no slide */
-  --section-top: clamp(32px, 3.45vw, 64px); /* eyebrow a ~56px do topo */
-  --title-gap:   clamp(20px, 2.6vw, 48px);  /* eyebrow → título (~108px) */
-  --header-h:    64px;
+  --gutter:   clamp(20px, 4.6vw, 80px);  /* 67px no slide */
+  --header-h: 64px;
+
+  /* Overlay do hero (DESIGN §5 S1) */
+  --hero-overlay: linear-gradient(to top, rgba(20,18,14,.75) 0%, rgba(20,18,14,.35) 35%, rgba(20,18,14,0) 60%);
 }
 
-/* --------------------------------------------------------------------------
-   Reset leve
-   -------------------------------------------------------------------------- */
+/* === Reset leve === */
 *, *::before, *::after { box-sizing: border-box; }
 
 html {
@@ -93,29 +94,20 @@ table { border-collapse: collapse; border-spacing: 0; }
   outline-offset: 3px;
 }
 
-/* --------------------------------------------------------------------------
-   Seção (cada slide = uma seção 16:9)
-   -------------------------------------------------------------------------- */
+/* === Seção (base mobile-first) === */
 .section {
   position: relative;
-  min-height: 100vh;
-  padding: var(--section-top) var(--gutter) calc(var(--section-top) * 2);
+  padding: 72px var(--gutter) 40px;
   background: var(--c-paper);
   color: var(--c-ink);
 }
 
-@media (min-width: 1200px) {
-  .section { aspect-ratio: 16 / 9; }
-}
-
-.section--hero    { min-height: 100svh; background: var(--c-ink); }
 .section--earth   { background: var(--c-earth); }
 .section--earth-2 { background: var(--c-earth-2); }
 .section--cream   { background: var(--c-cream); }
 
 .font-alt { font-family: var(--font-alt); }
-
-.on-dark { color: var(--c-on-dark); }
+.on-dark  { color: var(--c-on-dark); }
 
 /* Títulos */
 .section-title,
@@ -124,45 +116,218 @@ table { border-collapse: collapse; border-spacing: 0; }
   line-height: var(--lh-title);
   letter-spacing: var(--ls-title);
 }
-.section-title { margin-top: var(--title-gap); font-size: var(--fs-h1); }
-.hero-title    { font-size: var(--fs-hero); }
-
+.section-title { margin-top: 20px; font-size: var(--fs-h1); }
 .section--cream .section-title { color: var(--c-ink-warm); }
 
-/* --------------------------------------------------------------------------
-   Eyebrow (rótulo de seção)
-   -------------------------------------------------------------------------- */
+/* Eyebrow */
 .eyebrow {
   font: 700 var(--fs-eyebrow)/1 var(--font-main);
   color: var(--c-gold);
   text-transform: uppercase;
-  letter-spacing: .02em;
+  letter-spacing: 0;
 }
-.font-alt .eyebrow     { font-family: var(--font-alt); }
+.font-alt .eyebrow       { font-family: var(--font-alt); }
 .section--cream .eyebrow { color: var(--c-gold-warm); }
-.on-dark .eyebrow      { color: var(--c-beige-light); }
+.on-dark .eyebrow        { color: var(--c-beige-light); }
 
-/* --------------------------------------------------------------------------
-   Rodapé de seção
-   -------------------------------------------------------------------------- */
+/* Rodapé de seção */
 .section-foot {
-  position: absolute;
-  left: var(--gutter);
-  bottom: 4.5%;
+  margin-top: 48px;
   font-size: var(--fs-foot);
   line-height: 1;
   color: var(--c-muted);
   text-transform: uppercase;
+  letter-spacing: -0.03em;
 }
-.section-foot--center {
-  left: 48.5%;
-  text-transform: none;
-}
+.section-foot--center { margin-top: 12px; text-transform: none; }
 .on-dark .section-foot { color: var(--c-foot-dark); }
 
-/* --------------------------------------------------------------------------
-   Movimento (DESIGN §7) — a classe é aplicada pelo JS
-   -------------------------------------------------------------------------- */
+/* Fotos: sem raio, sem sombra, sempre cobrindo a área */
+figure img,
+.bleed img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Foto sangrada (mobile: largura total, 60vh) */
+.bleed {
+  margin: 40px calc(-1 * var(--gutter)) 0;
+  height: 60vh;
+}
+
+/* === S01 Hero === */
+.section--hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: 0 var(--gutter);
+  background: var(--c-ink);
+  overflow: hidden;
+}
+.hero-media {
+  position: absolute;
+  inset: 0;
+}
+.hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+}
+.hero-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--hero-overlay);
+}
+.hero-content {
+  position: absolute;
+  left: var(--gutter);
+  right: var(--gutter);
+  bottom: 11.6%;
+}
+.hero-rule {
+  display: block;
+  width: max(80px, 9.1vw);
+  height: 2.5px;
+  background: var(--c-gold-line);
+}
+.hero-content .eyebrow { margin-top: max(16px, 1.58vw); }
+.hero-title {
+  margin-top: max(20px, 2.88vw);
+  font-size: var(--fs-hero);
+  line-height: 1.1;
+}
+.hero-sub {
+  margin-top: max(16px, 2.04vw);
+  font-size: clamp(1rem, 1.51vw, 1.4rem); /* 22px no slide */
+}
+.section--hero .section-foot {
+  position: absolute;
+  left: var(--gutter);
+  bottom: 3.9%;
+  margin: 0;
+}
+
+/* === S02 O Centro === */
+.centro-text { margin-top: 32px; }
+.centro-text p + p { margin-top: 1.2em; }
+
+/* === S03 Números === */
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px 24px;
+  margin-top: 40px;
+}
+.stat-num {
+  font-size: var(--fs-stat);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--c-beige);
+}
+.stat-label {
+  margin-top: 4px;
+  font-size: clamp(1rem, 1.575vw, 1.5rem); /* 23px medido no slide */
+  line-height: 1.3;
+  color: var(--c-on-dark);
+}
+.stat--e { grid-column: 1 / -1; }
+.stat--e .stat-num { font-size: clamp(2.2rem, 3.48vw, 3.8rem); } /* ~51px no slide */
+
+/* ==========================================================================
+   Desktop — grade do slide (≥1200px)
+   ========================================================================== */
+@media (min-width: 1200px) {
+  .section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    aspect-ratio: 16 / 9;
+    min-height: 100vh;
+    padding: 0;
+    overflow: hidden;
+  }
+  .slide {
+    position: relative;
+    flex: none;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+  .section-head {
+    position: absolute;
+    left: 4.6%;
+    top: 6%;
+  }
+  .section-title { margin-top: 2.83vw; }
+
+  .section-foot {
+    position: absolute;
+    left: 4.6%;
+    bottom: 3.9%;
+    margin: 0;
+  }
+  .section-foot--center { left: 48.5%; }
+
+  .bleed {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    height: auto;
+    margin: 0;
+  }
+  .bleed--right { right: 0; }
+  .bleed--left  { left: 0; }
+
+  /* S01 */
+  .section--hero { aspect-ratio: auto; }
+  .hero-content { left: 4.6%; right: auto; }
+  .hero-rule { width: 9.1vw; }
+  .hero-content .eyebrow { margin-top: 1.58vw; }
+  .hero-title { margin-top: 2.88vw; }
+  .hero-sub   { margin-top: 2.04vw; }
+  .section--hero .section-foot { left: 4.6%; }
+
+  /* S02 */
+  .centro-text {
+    position: absolute;
+    left: 4.6%;
+    top: 34.2%;
+    width: 50.6%;
+    margin: 0;
+  }
+  .centro-text p:nth-child(2) { margin-top: 5.2vw; text-align: justify; }
+  .centro-text p:nth-child(3) { margin-top: 3.65vw; text-align: justify; width: 95.3%; }
+  .centro-photo { left: 57.4%; }
+
+  /* S03 */
+  .stats {
+    position: absolute;
+    inset: 0;
+    display: block;
+    margin: 0;
+  }
+  .stat { position: absolute; }
+  .stat--a { left: 4.6%;  top: 30.7%; }
+  .stat--b { left: 38.6%; top: 30.7%; }
+  .stat--c { left: 4.6%;  top: 56%; }
+  .stat--d { left: 38.6%; top: 56%; }
+  .stat--e { left: 4.6%;  top: 80.2%; width: 54.6%; display: flex; align-items: center; }
+  .stat-label { margin-top: .25vw; }
+  .stat--e .stat-label { position: absolute; left: 35.9%; margin: 0; white-space: nowrap; transform: translateY(.14vw); }
+  .numeros-photo { left: 59.2%; }
+}
+
+/* === Responsivo: tablet === */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .section:not(.section--hero) { padding-top: 96px; padding-bottom: 64px; }
+}
+
+/* === Movimento (DESIGN §7) — a classe é aplicada pelo JS === */
 .reveal {
   opacity: 0;
   transform: translateY(16px);
@@ -172,23 +337,4 @@ table { border-collapse: collapse; border-spacing: 0; }
 
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
-}
-
-/* --------------------------------------------------------------------------
-   Responsivo (base — detalhes por seção vêm depois)
-   -------------------------------------------------------------------------- */
-@media (max-width: 1199px) {
-  .section:not(.section--hero) {
-    min-height: auto;
-    padding-top: 96px;
-    padding-bottom: 96px;
-  }
-}
-
-@media (max-width: 767px) {
-  .section:not(.section--hero) .section-foot {
-    position: static;
-    margin-top: 48px;
-  }
-  .section-foot--center { margin-top: 12px; }
 }
