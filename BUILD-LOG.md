@@ -22,3 +22,11 @@ Registro das etapas P2–P12 (PROMPTS.md), decisões e pendências.
 - S3 com `data-count`/`data-prefix`/`data-suffix` para os contadores.
 - Correção: "estrutura dedicado" → "dedicada"; " ." solto removido.
 - Ciclo de correção (2 rodadas): posições verticais e larguras dentro de ±2px do slide.
+
+### P3 — S4 Áreas, S5 Localização, S6 Inserção, S7 Estrutura ✅
+- S4: `<table>` semântica com `<caption>` oculta, cabeçalho `--c-earth`, zebra `--c-row`, sem bordas; linhas medidas no slide (cabeçalho 53px, linhas ~63,7px, x 67–916). Números começam em x 713 (no slide não estão exatamente centralizados sob o cabeçalho — seguido o slide). Cabeçalho medido 19,5px e números 27,5px (DESIGN: 17/26).
+- S5: mapa recortado do slide 05 (ver Decisão 1), posição x 36,4% / y 28,2% / largura 59,07%.
+- S6: foto sangrada à esquerda até 91% da altura; título com entrelinha 1,05 (medida).
+- S7: título 3 linhas medido em 70,5px com entrelinha 1,04 (DESIGN: 72px); foto sangrada até 91%.
+- Calibração global: `.lead` com `letter-spacing: -0.015em`; corpo com `+0.006em` (larguras medidas no slide).
+- Ciclo de correção (2 rodadas): tudo dentro de ±3px do slide.

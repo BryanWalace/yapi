@@ -75,6 +75,7 @@ body {
   font-family: var(--font-main);
   font-size: var(--fs-body);
   line-height: var(--lh-body);
+  letter-spacing: .006em; /* corpo do slide ~1% mais largo */
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
@@ -239,6 +240,93 @@ figure img,
 .stat--e { grid-column: 1 / -1; }
 .stat--e .stat-num { font-size: clamp(2.2rem, 3.48vw, 3.8rem); } /* ~51px no slide */
 
+/* === Utilitários === */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+.lead { font-size: var(--fs-lead); line-height: 1.25; letter-spacing: -0.015em; }
+
+/* === S04 Áreas === */
+.areas-table-wrap { margin-top: 32px; }
+.areas-table {
+  width: 100%;
+  table-layout: fixed;
+  color: var(--c-ink);
+}
+.areas-table thead th {
+  height: 48px;
+  padding: 0 0 0 14px;
+  background: var(--c-earth);
+  color: var(--c-on-dark);
+  font-size: clamp(.85rem, 1.34vw, 1.25rem); /* 19.5px medido (DESIGN: 17) */
+  font-weight: 700;
+  text-align: left;
+}
+.areas-table thead th:last-child { width: 40%; padding-left: 0; }
+.areas-table tbody th,
+.areas-table tbody td {
+  height: 52px;
+  padding: 0 0 0 14px;
+  font-size: var(--fs-body);
+}
+.areas-table tbody th { font-weight: 400; text-align: left; }
+.areas-table tbody td {
+  padding: 0;
+  font-size: clamp(1.05rem, 1.89vw, 1.8rem); /* 27.5px medido (DESIGN: 26) */
+  font-weight: 700;
+}
+.areas-table tbody tr:nth-child(odd) { background: var(--c-row); }
+
+.areas-note { margin-top: 40px; color: var(--c-ink-soft); }
+.areas-note-title {
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  line-height: var(--lh-title);
+  letter-spacing: var(--ls-title);
+  color: var(--c-gold);
+}
+.areas-note p { margin-top: 1em; }
+
+/* === S05 Localização === */
+.local-text { margin-top: 32px; }
+.local-city {
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  line-height: var(--lh-title);
+  letter-spacing: var(--ls-title);
+}
+.local-state {
+  margin-top: 8px;
+  font-size: var(--fs-h3);
+  color: var(--c-gold);
+}
+.local-desc { margin-top: 24px; color: var(--c-ink-soft); }
+.local-map { margin-top: 32px; }
+.local-map img { height: auto; }
+
+/* === S06 Inserção === */
+.insercao-text { margin-top: 32px; color: var(--c-ink-soft); }
+.insercao-text .lead { color: var(--c-ink); }
+.insercao-text p + p { margin-top: 1.2em; }
+
+/* === S07 Estrutura === */
+.estrutura-title {
+  margin-top: 20px;
+  font-size: clamp(2.6rem, 4.85vw, 5.5rem); /* 70.5px medido (DESIGN: 72) */
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: var(--ls-title);
+  color: var(--c-on-dark);
+}
+.estrutura-text .lead { margin-top: 32px; }
+.estrutura-list { margin-top: 24px; color: var(--c-beige); }
+
 /* ==========================================================================
    Desktop — grade do slide (≥1200px)
    ========================================================================== */
@@ -320,6 +408,68 @@ figure img,
   .stat-label { margin-top: .25vw; }
   .stat--e .stat-label { position: absolute; left: 35.9%; margin: 0; white-space: nowrap; transform: translateY(.14vw); }
   .numeros-photo { left: 59.2%; }
+
+  /* S04 */
+  .areas-table-wrap {
+    position: absolute;
+    left: 4.6%;
+    top: 26.86%;
+    width: 58.38%;
+    margin: 0;
+  }
+  .areas-table thead th { height: 3.64vw; padding-left: 1.44vw; }
+  .areas-table thead th:last-child { width: 39.2%; padding-left: 0; }
+  .areas-table tbody th { height: 4.375vw; padding-left: 1.44vw; }
+  .areas-table tbody td { padding-left: 8.93vw; }
+  .areas-note {
+    position: absolute;
+    left: 67.4%;
+    top: 30.05%;
+    width: 30%;
+    margin: 0;
+  }
+  .areas-note p:first-of-type { margin-top: 4.95vw; }
+  .areas-note p + p { margin-top: 7.35vw; }
+
+  /* S05 */
+  .local-text {
+    position: absolute;
+    left: 4.6%;
+    top: 33%;
+    width: 27%;
+    margin: 0;
+  }
+  .local-state { margin-top: 1.37vw; }
+  .local-desc  { margin-top: 5.67vw; }
+  .local-map {
+    position: absolute;
+    left: 36.4%;
+    top: 28.2%;
+    width: 59.07%;
+    margin: 0;
+  }
+
+  /* S06 */
+  #insercao .section-head,
+  .insercao-text { left: 39.4%; }
+  .insercao-text {
+    position: absolute;
+    top: 36.8%;
+    width: 53.5%;
+    margin: 0;
+  }
+  #insercao .section-title { margin-top: 3.38vw; line-height: 1.05; }
+  .insercao-text p:nth-child(2) { margin-top: 4.05vw; }
+  .insercao-text p:nth-child(3) { margin-top: 5.5vw; }
+  .insercao-photo { width: 34.34%; bottom: 8.9%; }
+
+  /* S07 */
+  #estrutura .section-head { top: 6.6%; }
+  .estrutura-text > * { position: absolute; left: 4.6%; margin: 0; white-space: nowrap; }
+  .estrutura-title { top: 23.2%; }
+  .estrutura-text .lead { top: 58.65%; margin: 0; line-height: 1.1; }
+  .estrutura-list { top: 76.5%; line-height: 1.17; }
+  .estrutura-photo { left: 53.16%; bottom: 8.9%; }
 }
 
 /* === Responsivo: tablet === */
