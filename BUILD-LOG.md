@@ -133,3 +133,27 @@ Screenshots de cada seção em `tmp/compare/sNN.png`, composições slide × sit
 - `README.md`: como rodar localmente (`node tools/serve.js`, `npx serve .` ou `python -m http.server`) e publicar (`vercel --prod`).
 - `package.json` com scripts `start`, `test`, `compare`, `responsive`, `webp` (só ferramentas de desenvolvimento; o site não depende de nada).
 - Não testado aqui: o deploy real na Vercel (precisa da sua conta/CLI autenticada).
+
+---
+
+## Checklist de pronto (CLAUDE.md §8)
+
+- [x] **As 16 seções existem na ordem e com os ids do §4** — `#inicio` … `#contato`.
+- [x] **Screenshot de cada seção em 1456×819 comparado com `reference/slide-XX.png`** — ver tabela do P11; posições e larguras de texto dentro de ±4px (S12: grade regular intencional).
+- [x] **Responsivo em 375, 768, 1024, 1440 e 1920px sem scroll horizontal** — 0px em todas (`tools/responsive.js`).
+- [x] **Lighthouse ≥ 90** — mobile: Performance 96 · Acessibilidade 96 · Boas práticas 100 · SEO 100; desktop: 100 · 96 · 100 · 100 (servidor local sem compressão/cache; na Vercel tende a melhorar).
+- [x] **Todos os links de contato funcionam** — `mailto:`, WhatsApp (`wa.me`), Instagram e Google Maps com os endereços de CONTENT.md; os externos respondem 200 e abrem em nova aba (`rel="noopener"`). WhatsApp também no botão flutuante.
+- [x] **Nenhum texto difere de CONTENT.md** — `tools/check-content.js`: 136 trechos + 17 alts + title + description; só as 3 correções permitidas.
+- Extras do §6: header fixo, menu mobile, animações e contadores, lightbox, WhatsApp flutuante, SEO (title, description, Open Graph, JSON-LD `MedicalOrganization`, `lang="pt-BR"`), acessibilidade (alts, foco dourado, teclado, `<table>` semântica, skip link), performance (lazy, width/height, WebP com `<picture>`) — todos implementados.
+- §7: sem ícones genéricos/emojis (só WhatsApp e Instagram em SVG monocromático), sem `localStorage`, cookies ou trackers, sem imagens de banco, `reference/` fora do deploy.
+
+## Revisar manualmente
+
+1. **Mapa da S5** — `assets/img/mapa-conectividade.jpg` do kit é, na verdade, o slide 08. Usei um recorte do slide 05 (860×484). Se tiver o arquivo original do mapa, salve como `assets/img/mapa-conectividade-s05.jpg` e rode `npm run webp`.
+2. **Contraste AA** — ver a tabela no P10. As cores dos slides foram mantidas; eyebrows dourados, rótulos dos cards e rodapés cinza não atingem 4,5:1. Decidir se troca por `#966621`/`#716D64` em textos pequenos.
+3. **Logo** — o header usa versões geradas por mim com o fundo removido (`logo-yapi-header*.png`) e a versão clara foi recolorida para `--c-paper`. Conferir se a marca aprova; o ideal é receber o logo vetorial (SVG) oficial.
+4. **Hero no celular** — em tela retrato uso um recorte que mostra o letreiro (em vez do centro da foto). Conferir num celular real.
+5. **Domínio** — trocar o `og:image` por URL absoluta quando o domínio existir (e, se quiser, adicionar `<link rel="canonical">` e `url` no JSON-LD).
+6. **Instagram** — confirmar que `@yapiclinicalresearch` é o perfil certo (o Instagram responde 200 mesmo para perfis inexistentes).
+7. **Tipografia no Mac/iOS/Android** — os tamanhos foram calibrados com o Verdana do Windows. No Android não há Verdana (cai em DejaVu Sans/Roboto); conferir quebras de linha nesses aparelhos.
+8. **Rodapé da S13** — omitido porque o slide 13 não tem; se preferir a regra do CLAUDE.md §5.7, basta adicionar `<p class="section-foot" aria-hidden="true">YAPI PESQUISA CLÍNICA</p>` no fim da `#apoio`.
