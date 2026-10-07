@@ -157,3 +157,10 @@ Screenshots de cada seção em `tmp/compare/sNN.png`, composições slide × sit
 6. **Instagram** — confirmar que `@yapiclinicalresearch` é o perfil certo (o Instagram responde 200 mesmo para perfis inexistentes).
 7. **Tipografia no Mac/iOS/Android** — os tamanhos foram calibrados com o Verdana do Windows. No Android não há Verdana (cai em DejaVu Sans/Roboto); conferir quebras de linha nesses aparelhos.
 8. **Rodapé da S13** — omitido porque o slide 13 não tem; se preferir a regra do CLAUDE.md §5.7, basta adicionar `<p class="section-foot" aria-hidden="true">YAPI PESQUISA CLÍNICA</p>` no fim da `#apoio`.
+
+## Build e deploy (após o P12)
+- `npm run build` (`tools/build.js`) gera `dist/` do zero: só os arquivos referenciados pelo HTML, HTML minificado (html-minifier-terser, `conservativeCollapse` para não colar palavras quando os `<br>` somem no mobile), CSS/JS minificados (esbuild) com hash no nome, `_headers`, `robots.txt` e `sitemap.xml` (placeholder `SITE_URL`, substituído se a variável for definida no build). O build falha se algum caminho de `dist/index.html` for absoluto ou não existir.
+- Vercel: `vercel.json` com `buildCommand: npm run build`, `outputDirectory: dist` e cache imutável para `/assets/*`, `/css/*`, `/js/*`.
+- Cloudflare: **Workers com static assets** (`wrangler.toml`, `[assets] directory = "./dist"`) — a documentação oficial diz "Start new projects with Workers". Deploy: `npm run deploy:cf` (= build + `wrangler deploy`); `wrangler deploy --dry-run` validado.
+- Testes do build: `tools/check-dist.js` (via `npm run preview`) — 0 erros de console, 0 requisições com falha, todas as imagens carregadas (16 em .webp) no desktop e no mobile; `SITE_DIR=dist` em `check-ui.js`/`check-content.js` — todos passando; `html-validate dist/index.html` — 0 erros.
+- `npm audit`: o `serve` puxava `compression` vulnerável (só no preview local); corrigido com `overrides` para `compression@^1.8.2` → 0 vulnerabilidades.

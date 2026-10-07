@@ -1,0 +1,8 @@
+# Cloudflare Workers com static assets (método recomendado pela Cloudflare para projetos novos).
+# Site 100% estático: sem "main" (nenhum script de Worker); a Cloudflare serve a pasta dist/.
+# As regras de cache vêm de dist/_headers, gerado pelo `npm run build`.
+name = "yapi"
+compatibility_date = "2026-10-07"
+
+[assets]
+directory = "./dist"

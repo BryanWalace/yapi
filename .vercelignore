@@ -1,14 +1,14 @@
-# Só o site estático vai para a Vercel
+# A Vercel roda `npm run build` e publica só dist/.
+# Isto apenas evita enviar arquivos que o build não usa.
 reference/
-*.md
-PROMPTS.md
-LEIA-ME.txt
-tools/
 tmp/
 node_modules/
-package.json
-package-lock.json
-.htmlvalidate.json
+dist/
 .claude/
-# Arquivo errado do kit (contém o slide 08, não o mapa); o site usa mapa-conectividade-s05.*
-assets/img/mapa-conectividade.jpg
+.wrangler/
+CLAUDE.md
+DESIGN.md
+CONTENT.md
+PROMPTS.md
+BUILD-LOG.md
+LEIA-ME.txt

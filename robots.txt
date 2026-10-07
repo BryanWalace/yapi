@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /reference/
+
+Sitemap: SITE_URL/sitemap.xml

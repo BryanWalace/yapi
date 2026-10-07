@@ -6,6 +6,7 @@ const path = require('path');
 const { chromium } = require('playwright');
 
 const ROOT = path.join(__dirname, '..');
+const SITE = process.env.SITE_DIR ? path.resolve(process.env.SITE_DIR) : ROOT; // SITE_DIR=dist testa o build
 const norm = (s) => s.replace(/↵/g, ' ').replace(/[“”"]/g, '').replace(/\s+/g, ' ').trim();
 
 // Extrai os textos esperados de CONTENT.md
@@ -44,7 +45,7 @@ function expected() {
 const server = http.createServer((req, res) => {
   let p = decodeURIComponent(req.url.split('?')[0]);
   if (p.endsWith('/')) p += 'index.html';
-  fs.readFile(path.join(ROOT, p), (err, buf) => { if (err) { res.writeHead(404); return res.end(); } res.end(buf); });
+  fs.readFile(path.join(SITE, p), (err, buf) => { if (err) { res.writeHead(404); return res.end(); } res.end(buf); });
 });
 
 (async () => {

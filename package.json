@@ -2,8 +2,11 @@
   "name": "yapi-pesquisa-clinica",
   "version": "1.0.0",
   "private": true,
-  "description": "Site institucional one-page do YAPI Pesquisa Clínica (HTML, CSS e JS puros, sem build).",
+  "description": "Site institucional one-page do YAPI Pesquisa Clínica (HTML, CSS e JS puros, sem framework; build só minifica para dist/).",
   "scripts": {
+    "build": "node tools/build.js",
+    "preview": "npx serve dist",
+    "deploy:cf": "npm run build && npx wrangler deploy",
     "start": "node tools/serve.js",
     "test": "node tools/check-ui.js && node tools/check-content.js && html-validate index.html",
     "compare": "node tools/compare.js && node tools/diff.js",
@@ -17,9 +20,15 @@
   "author": "Bryan Walace Cabral de Paula",
   "type": "commonjs",
   "devDependencies": {
+    "esbuild": "^0.28.2",
+    "html-minifier-terser": "^7.2.0",
     "html-validate": "^11.16.2",
     "lighthouse": "^13.5.0",
     "playwright": "^1.63.0",
+    "serve": "^14.2.6",
     "sharp": "^0.35.5"
+  },
+  "overrides": {
+    "compression": "^1.8.2"
   }
 }

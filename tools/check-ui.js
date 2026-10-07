@@ -6,6 +6,7 @@ const path = require('path');
 const { chromium } = require('playwright');
 
 const ROOT = path.join(__dirname, '..');
+const SITE = process.env.SITE_DIR ? path.resolve(process.env.SITE_DIR) : ROOT; // SITE_DIR=dist testa o build
 const OUT = path.join(ROOT, 'tmp', 'ui');
 const TYPES = { '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript', '.png': 'image/png',
   '.jpg': 'image/jpeg', '.webp': 'image/webp', '.svg': 'image/svg+xml' };
@@ -13,7 +14,7 @@ const TYPES = { '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascrip
 const server = http.createServer((req, res) => {
   let p = decodeURIComponent(req.url.split('?')[0]);
   if (p.endsWith('/')) p += 'index.html';
-  fs.readFile(path.join(ROOT, p), (err, buf) => {
+  fs.readFile(path.join(SITE, p), (err, buf) => {
     if (err) { res.writeHead(404); return res.end(); }
     res.writeHead(200, { 'Content-Type': TYPES[path.extname(p)] || 'application/octet-stream' });
     res.end(buf);
