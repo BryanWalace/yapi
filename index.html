@@ -42,7 +42,32 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <main id="conteudo">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="site-header" data-header>
+    <a class="brand" href="#inicio" aria-label="YAPI Pesquisa Clínica, voltar ao início">
+      <img class="brand-logo brand-logo--light" src="assets/img/logo-yapi-header-light.png" alt="" width="236" height="120">
+      <img class="brand-logo brand-logo--dark" src="assets/img/logo-yapi-header.png" alt="" width="236" height="120">
+    </a>
+    <nav class="site-nav" id="site-nav" aria-label="Principal">
+      <ul class="nav-list">
+        <li><a href="#o-centro" data-nav-link="o-centro">O Centro</a></li>
+        <li><a href="#numeros" data-nav-link="numeros">Números</a></li>
+        <li><a href="#estrutura" data-nav-link="estrutura">Estrutura</a></li>
+        <li><a href="#viabilidade" data-nav-link="viabilidade">Viabilidade</a></li>
+        <li><a href="#principios" data-nav-link="principios">Princípios</a></li>
+        <li><a href="#contato" data-nav-link="contato">Contato</a></li>
+      </ul>
+      <a class="btn-outline" href="#contato">Fale conosco</a>
+    </nav>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menu">
+      <span class="menu-toggle-bar" aria-hidden="true"></span>
+      <span class="menu-toggle-bar" aria-hidden="true"></span>
+      <span class="menu-toggle-bar" aria-hidden="true"></span>
+    </button>
+  </header>
+
+  <main id="conteudo" tabindex="-1">
 
     <!-- S1 -->
     <section id="inicio" class="section section--hero on-dark" aria-labelledby="inicio-title">
@@ -472,6 +497,13 @@
     </section>
 
   </main>
+
+  <a class="wa-float" href="https://wa.me/5517997588160" target="_blank" rel="noopener" aria-label="Conversar pelo WhatsApp">
+    <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" focusable="false">
+      <path d="M3.5 20.5l1.3-4.2A8.5 8.5 0 1 1 8 19.4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+      <path d="M9 8.2c.2-.5.5-.6.8-.6h.5c.2 0 .4.1.5.4l.7 1.6c.1.2 0 .5-.1.6l-.5.6c-.1.2-.1.4 0 .5.6 1 1.4 1.8 2.4 2.4.2.1.4.1.5 0l.6-.5c.2-.2.4-.2.6-.1l1.6.7c.3.1.4.3.4.5v.5c0 .3-.1.6-.6.8-.6.3-1.6.4-2.9-.2-1.5-.7-2.9-2-3.7-3.5-.6-1.2-.5-2.2-.2-2.7z" fill="currentColor"/>
+    </svg>
+  </a>
 
   <script src="js/main.js" defer></script>
 </body>

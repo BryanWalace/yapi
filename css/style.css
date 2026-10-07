@@ -58,6 +58,7 @@
 
   /* Overlay do hero (DESIGN §5 S1) */
   --hero-overlay: linear-gradient(to top, rgba(20,18,14,.75) 0%, rgba(20,18,14,.35) 35%, rgba(20,18,14,0) 60%);
+  --lightbox-bg:  rgba(20,18,14,.94); /* mesmo tom do overlay do hero */
 }
 
 /* === Reset leve === */
@@ -537,6 +538,218 @@ a.card:hover { background: var(--c-line); }
   margin: 0;
   font-size: clamp(1.05rem, 1.65vw, 1.55rem); /* 24px */
   font-weight: 700;
+}
+
+/* === Extras: skip link === */
+.skip-link {
+  position: fixed;
+  left: 16px;
+  top: -100px;
+  z-index: 200;
+  padding: 10px 16px;
+  background: var(--c-earth);
+  color: var(--c-on-dark);
+  font-size: .875rem;
+  font-weight: 700;
+}
+.skip-link:focus { top: 12px; }
+main:focus { outline: none; }
+
+/* === Extras: header fixo === */
+.site-header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-h);
+  padding: 0 var(--gutter);
+  border-bottom: 1px solid transparent;
+  color: var(--c-on-dark);
+  transition: background-color .3s ease-out, border-color .3s ease-out, color .3s ease-out;
+}
+.site-header.is-solid {
+  background: var(--c-paper);
+  border-bottom-color: var(--c-line);
+  color: var(--c-ink);
+}
+.brand { position: relative; display: block; height: 40px; flex: none; }
+.brand-logo { width: auto; height: 40px; transition: opacity .3s ease-out; }
+.brand-logo--dark { position: absolute; inset: 0 auto auto 0; opacity: 0; }
+.site-header.is-solid .brand-logo--light { opacity: 0; }
+.site-header.is-solid .brand-logo--dark  { opacity: 1; }
+
+.site-nav { display: flex; align-items: center; gap: 32px; }
+.nav-list { display: flex; gap: 28px; }
+.nav-list a {
+  position: relative;
+  display: block;
+  padding: 6px 0;
+  font-size: .875rem;
+  letter-spacing: .01em;
+}
+.nav-list a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--c-gold);
+  transform: scaleX(0);
+  transition: transform .25s ease-out;
+}
+.nav-list a:hover::after,
+.nav-list a.is-active::after { transform: scaleX(1); }
+
+.btn-outline {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1.5px solid var(--c-gold);
+  font-size: .8125rem;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+  color: inherit;
+  transition: background-color .2s ease-out, color .2s ease-out;
+}
+.btn-outline:hover { background: var(--c-gold); color: var(--c-paper); }
+
+.menu-toggle {
+  display: none;
+  position: relative;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  margin-right: -10px;
+}
+.menu-toggle-bar {
+  position: absolute;
+  left: 11px;
+  width: 22px;
+  height: 2px;
+  background: currentColor;
+  transition: transform .25s ease-out, opacity .2s ease-out;
+}
+.menu-toggle-bar:nth-child(1) { top: 15px; }
+.menu-toggle-bar:nth-child(2) { top: 21px; }
+.menu-toggle-bar:nth-child(3) { top: 27px; }
+.menu-toggle[aria-expanded="true"] .menu-toggle-bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.menu-toggle[aria-expanded="true"] .menu-toggle-bar:nth-child(2) { opacity: 0; }
+.menu-toggle[aria-expanded="true"] .menu-toggle-bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* Menu mobile em tela cheia (<1024px) */
+@media (max-width: 1023px) {
+  .menu-toggle { display: block; }
+  .site-nav {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+    padding: var(--header-h) var(--gutter);
+    background: var(--c-earth);
+    color: var(--c-on-dark);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .3s ease-out, visibility 0s linear .3s;
+  }
+  .site-nav.is-open {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity .3s ease-out;
+  }
+  .nav-list { flex-direction: column; align-items: center; gap: 20px; }
+  .nav-list a { font-size: 1.5rem; font-weight: 700; letter-spacing: var(--ls-title); }
+  .site-nav .btn-outline { padding: 14px 28px; font-size: .9375rem; }
+  .site-header.menu-open { color: var(--c-on-dark); }
+  .site-header.menu-open .brand { z-index: 2; }
+  .site-header.menu-open .brand-logo--light { opacity: 1; }
+  .site-header.menu-open .brand-logo--dark  { opacity: 0; }
+}
+html.is-locked,
+html.is-locked body { overflow: hidden; }
+
+/* Âncoras compensam o header fixo */
+.section { scroll-margin-top: var(--header-h); }
+#inicio { scroll-margin-top: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+/* === Extras: botão WhatsApp flutuante === */
+.wa-float {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--c-gold);
+  color: var(--c-paper);
+  transition: background-color .2s ease-out, transform .2s ease-out;
+}
+.wa-float:hover { background: var(--c-earth); transform: translateY(-2px); }
+.wa-float svg { width: 28px; height: 28px; }
+
+/* === Extras: lightbox === */
+.zoom {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: zoom-in;
+}
+.zoom img { width: 100%; height: 100%; object-fit: cover; }
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 72px;
+  background: var(--lightbox-bg);
+  color: var(--c-on-dark);
+}
+.lightbox[hidden] { display: none; }
+.lightbox-figure { margin: 0; text-align: center; }
+.lightbox-img {
+  max-width: min(100%, 1200px);
+  max-height: calc(100vh - 160px);
+  width: auto;
+  height: auto;
+  margin: 0 auto;
+  object-fit: contain;
+}
+.lightbox-caption {
+  margin-top: 14px;
+  font-size: .875rem;
+  color: var(--c-beige-light);
+}
+.lightbox-btn {
+  position: absolute;
+  padding: 10px 14px;
+  font-size: .8125rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  color: var(--c-beige-light);
+}
+.lightbox-btn:hover { color: var(--c-on-dark); }
+.lightbox-close { top: 12px; right: 12px; }
+.lightbox-prev  { left: 8px;  top: 50%; transform: translateY(-50%); }
+.lightbox-next  { right: 8px; top: 50%; transform: translateY(-50%); }
+.lightbox-prev[hidden], .lightbox-next[hidden] { display: none; }
+@media (max-width: 767px) {
+  .lightbox { padding: 64px 16px 96px; }
+  .lightbox-prev, .lightbox-next { top: auto; bottom: 24px; transform: none; }
 }
 
 /* ==========================================================================

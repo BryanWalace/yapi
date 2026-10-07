@@ -46,3 +46,13 @@ Registro das etapas P2–P12 (PROMPTS.md), decisões e pendências.
 - S15: destaque 34,4px; propósito 25,5px `--c-beige`; valores com título 31,6px e descrição 22,3px. Mancha clara no canto inferior direito do slide = defeito do PDF, não reproduzida.
 - S16: painel `--c-sand` 32,3% × 91%; o logo original (com fundo sand embutido) funde-se ao painel. Cards `--c-row` sem raio; e-mail, endereço, WhatsApp e Instagram são links (externos com `target="_blank" rel="noopener"`). Ícones SVG inline monocromáticos `--c-ink`. Título 46px, nome 35,4px.
 - Comparação com Playwright em 1456×819 a partir desta etapa (na prática desde o P2): tudo dentro de ±5px.
+
+### P6 — Header, menu mobile, scroll, WhatsApp e lightbox ✅
+- Header fixo 64px: transparente sobre o hero (logo claro, links `--c-on-dark`) e, após o hero, fundo `--c-paper` + borda `--c-line` (logo escuro, links `--c-ink`). Logo do header = `logo-yapi-header(-light).png` a 40px.
+- Link ativo: o último destino do menu cujo topo passou de 40% da tela (as seções intermediárias contam para o item anterior — p.ex. S8–S13 → "Estrutura"). **Decisão:** o destaque dourado é um sublinhado de 2px `--c-gold`; o texto fica em `--c-ink` porque dourado sobre `--c-paper` (3,4:1) reprova AA em 14px. `aria-current="location"` no ativo.
+- "Fale conosco" (`.btn-outline`, borda dourada) → `#contato`. Mesmo motivo de contraste: texto herda a cor do header (claro sobre o hero, `--c-ink` no header sólido); no hover, fundo dourado.
+- Menu mobile (<1024px) em tela cheia `--c-earth`: fecha com ESC, com clique em link e ao passar para desktop; trava o scroll; `aria-expanded`/`aria-label` atualizados; foco preso no menu.
+- `scroll-margin-top: 64px` nas seções; `scroll-behavior: smooth` só sem `prefers-reduced-motion`.
+- WhatsApp flutuante: círculo 56px `--c-gold`, ícone `--c-paper`, `aria-label`.
+- Lightbox: cada `img[data-lightbox]` vira `<button class="zoom">` (teclado); diálogo `aria-modal`, ESC/clique fora fecham, ← → navegam entre as fotos da mesma seção, foco preso e devolvido à foto. Botões em texto ("Anterior", "Próxima", "Fechar") para não usar ícones genéricos (CLAUDE.md §7).
+- `tools/check-ui.js`: 27 verificações automáticas (header, link ativo, lightbox, menu, âncoras, scroll horizontal, console) — todas passando.
