@@ -1,0 +1,11 @@
+KIT YAPI — site institucional a partir do PDF
+
+1. Extraia esta pasta e abra no VS Code.
+2. Inicie o Claude na raiz da pasta.
+3. Cole os prompts de PROMPTS.md um por vez (P0 → P12).
+
+CLAUDE.md   regras do projeto (o Claude lê automaticamente)
+DESIGN.md   cores, fontes, medidas e layout de cada seção
+CONTENT.md  todos os textos, alts e links
+reference/  os 16 slides em imagem (fonte da verdade visual)
+assets/img/ fotos e logo já recortados do PDF
