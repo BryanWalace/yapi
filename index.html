@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
@@ -72,7 +72,11 @@
     <!-- S1 -->
     <section id="inicio" class="section section--hero on-dark" aria-labelledby="inicio-title">
       <div class="hero-media">
-        <img src="assets/img/hero-fachada.jpg" alt="Fachada do YAPI Pesquisa Clínica à noite, com letreiro iluminado em parede de pedra" width="2400" height="1350" fetchpriority="high" decoding="async">
+        <picture>
+          <source media="(orientation: portrait)" type="image/webp" srcset="assets/img/hero-fachada-portrait-600.webp 600w, assets/img/hero-fachada-portrait.webp 900w" sizes="67vh">
+          <source type="image/webp" srcset="assets/img/hero-fachada-1280.webp 1280w, assets/img/hero-fachada-1920.webp 1920w, assets/img/hero-fachada.webp 2400w" sizes="100vw">
+          <img src="assets/img/hero-fachada.jpg" alt="Fachada do YAPI Pesquisa Clínica à noite, com letreiro iluminado em parede de pedra" width="2400" height="1350" fetchpriority="high" decoding="async">
+        </picture>
       </div>
       <div class="hero-content">
         <span class="hero-rule" aria-hidden="true"></span>
@@ -97,7 +101,10 @@
         </div>
       </div>
       <figure class="bleed bleed--right centro-photo">
-        <img src="assets/img/centro-corredor-claraboia.jpg" alt="Corredor interno com claraboia de padrão geométrico e sofás claros" width="686" height="906" loading="lazy" decoding="async">
+        <picture>
+          <source srcset="assets/img/centro-corredor-claraboia.webp" type="image/webp">
+          <img src="assets/img/centro-corredor-claraboia.jpg" alt="Corredor interno com claraboia de padrão geométrico e sofás claros" width="686" height="906" loading="lazy" decoding="async">
+        </picture>
       </figure>
       <p class="section-foot" aria-hidden="true">YAPI PESQUISA CLÍNICA</p>
     </section>
@@ -133,7 +140,10 @@
         </dl>
       </div>
       <figure class="bleed bleed--right numeros-photo">
-        <img src="assets/img/numeros-letreiro.jpg" alt="Letreiro iluminado YAPI Pesquisa Clínica na fachada" width="658" height="893" loading="lazy" decoding="async">
+        <picture>
+          <source srcset="assets/img/numeros-letreiro.webp" type="image/webp">
+          <img src="assets/img/numeros-letreiro.jpg" alt="Letreiro iluminado YAPI Pesquisa Clínica na fachada" width="658" height="893" loading="lazy" decoding="async">
+        </picture>
       </figure>
       <p class="section-foot" aria-hidden="true">YAPI PESQUISA CLÍNICA</p>
     </section>
@@ -184,7 +194,10 @@
           <p class="local-desc">O centro está inserido em uma região cujo fluxo assistencial conecta diferentes municípios.</p>
         </div>
         <figure class="local-map">
-          <img src="assets/img/mapa-conectividade-s05.jpg" alt="Mapa do estado de São Paulo: Votuporanga a 45 min de carro de São José do Rio Preto, e de lá 45 min de avião até São Paulo" width="860" height="484" loading="lazy" decoding="async">
+          <picture>
+            <source srcset="assets/img/mapa-conectividade-s05.webp" type="image/webp">
+            <img src="assets/img/mapa-conectividade-s05.jpg" alt="Mapa do estado de São Paulo: Votuporanga a 45 min de carro de São José do Rio Preto, e de lá 45 min de avião até São Paulo" width="860" height="484" loading="lazy" decoding="async">
+          </picture>
         </figure>
       </div>
       <p class="section-foot" aria-hidden="true">YAPI PESQUISA CLÍNICA</p>
@@ -204,7 +217,10 @@
         </div>
       </div>
       <figure class="bleed bleed--left insercao-photo">
-        <img src="assets/img/acesso-sala-espera.jpg" alt="Sala de espera com iluminação indireta, poltronas e mesa de madeira" width="1000" height="1492" loading="lazy" decoding="async">
+        <picture>
+          <source srcset="assets/img/acesso-sala-espera.webp" type="image/webp">
+          <img src="assets/img/acesso-sala-espera.jpg" alt="Sala de espera com iluminação indireta, poltronas e mesa de madeira" width="1000" height="1492" loading="lazy" decoding="async">
+        </picture>
       </figure>
       <p class="section-foot" aria-hidden="true">YAPI PESQUISA CLÍNICA</p>
     </section>
@@ -222,7 +238,10 @@
         </div>
       </div>
       <figure class="bleed bleed--right estrutura-photo">
-        <img src="assets/img/estrutura-recepcao.jpg" alt="Recepção com balcão curvo de madeira e sofá de couro" width="1364" height="1492" loading="lazy" decoding="async">
+        <picture>
+          <source srcset="assets/img/estrutura-recepcao.webp" type="image/webp">
+          <img src="assets/img/estrutura-recepcao.jpg" alt="Recepção com balcão curvo de madeira e sofá de couro" width="1364" height="1492" loading="lazy" decoding="async">
+        </picture>
       </figure>
       <p class="section-foot" aria-hidden="true">YAPI PESQUISA CLÍNICA</p>
     </section>
@@ -241,10 +260,16 @@
         </div>
         <div class="photo-pair">
           <figure class="photo-pair__a">
-            <img src="assets/img/recepcao-1.jpg" alt="Área de recepção com sofá e estação de café" width="920" height="926" loading="lazy" decoding="async" data-lightbox>
+            <picture>
+              <source srcset="assets/img/recepcao-1.webp" type="image/webp">
+              <img src="assets/img/recepcao-1.jpg" alt="Área de recepção com sofá e estação de café" width="920" height="926" loading="lazy" decoding="async" data-lightbox>
+            </picture>
           </figure>
           <figure class="photo-pair__b">
-            <img src="assets/img/recepcao-2.jpg" alt="Sofá de espera junto a jardim interno" width="772" height="926" loading="lazy" decoding="async" data-lightbox>
+            <picture>
+              <source srcset="assets/img/recepcao-2.webp" type="image/webp">
+              <img src="assets/img/recepcao-2.jpg" alt="Sofá de espera junto a jardim interno" width="772" height="926" loading="lazy" decoding="async" data-lightbox>
+            </picture>
           </figure>
         </div>
       </div>
@@ -264,11 +289,17 @@
         </div>
         <div class="photo-pair photo-pair--consult">
           <figure class="photo-pair__a">
-            <img src="assets/img/consultorio-1.jpg" alt="Consultório 1 com estante de madeira e cadeira de exame" width="1006" height="926" loading="lazy" decoding="async" data-lightbox>
+            <picture>
+              <source srcset="assets/img/consultorio-1.webp" type="image/webp">
+              <img src="assets/img/consultorio-1.jpg" alt="Consultório 1 com estante de madeira e cadeira de exame" width="1006" height="926" loading="lazy" decoding="async" data-lightbox>
+            </picture>
             <figcaption>Consultório 1</figcaption>
           </figure>
           <figure class="photo-pair__b">
-            <img src="assets/img/consultorio-3.jpg" alt="Consultório 3 com mesa, maca e monitor de pressão" width="760" height="926" loading="lazy" decoding="async" data-lightbox>
+            <picture>
+              <source srcset="assets/img/consultorio-3.webp" type="image/webp">
+              <img src="assets/img/consultorio-3.jpg" alt="Consultório 3 com mesa, maca e monitor de pressão" width="760" height="926" loading="lazy" decoding="async" data-lightbox>
+            </picture>
             <figcaption>Consultório 3</figcaption>
           </figure>
         </div>
@@ -290,10 +321,16 @@
         </div>
         <div class="photo-pair">
           <figure class="photo-pair__a">
-            <img src="assets/img/tecnologia-1.jpg" alt="Sala de procedimentos com cadeira reclinável e painel de madeira" width="920" height="926" loading="lazy" decoding="async" data-lightbox>
+            <picture>
+              <source srcset="assets/img/tecnologia-1.webp" type="image/webp">
+              <img src="assets/img/tecnologia-1.jpg" alt="Sala de procedimentos com cadeira reclinável e painel de madeira" width="920" height="926" loading="lazy" decoding="async" data-lightbox>
+            </picture>
           </figure>
           <figure class="photo-pair__b">
-            <img src="assets/img/tecnologia-2.jpg" alt="Sala com cadeira de procedimentos e equipamentos" width="772" height="926" loading="lazy" decoding="async" data-lightbox>
+            <picture>
+              <source srcset="assets/img/tecnologia-2.webp" type="image/webp">
+              <img src="assets/img/tecnologia-2.jpg" alt="Sala com cadeira de procedimentos e equipamentos" width="772" height="926" loading="lazy" decoding="async" data-lightbox>
+            </picture>
           </figure>
         </div>
       </div>
@@ -315,10 +352,16 @@
         </div>
         <div class="photo-pair">
           <figure class="photo-pair__a">
-            <img src="assets/img/coordenacao-reuniao.jpg" alt="Sala de reuniões com mesa oval de madeira" width="920" height="926" loading="lazy" decoding="async" data-lightbox>
+            <picture>
+              <source srcset="assets/img/coordenacao-reuniao.webp" type="image/webp">
+              <img src="assets/img/coordenacao-reuniao.jpg" alt="Sala de reuniões com mesa oval de madeira" width="920" height="926" loading="lazy" decoding="async" data-lightbox>
+            </picture>
           </figure>
           <figure class="photo-pair__b">
-            <img src="assets/img/coordenacao-monitoria.jpg" alt="Sala de monitoria com bancada e computadores" width="772" height="926" loading="lazy" decoding="async" data-lightbox>
+            <picture>
+              <source srcset="assets/img/coordenacao-monitoria.webp" type="image/webp">
+              <img src="assets/img/coordenacao-monitoria.jpg" alt="Sala de monitoria com bancada e computadores" width="772" height="926" loading="lazy" decoding="async" data-lightbox>
+            </picture>
           </figure>
         </div>
       </div>
@@ -368,11 +411,17 @@
         </header>
         <div class="apoio-photos">
           <figure>
-            <img src="assets/img/apoio-circulacao.jpg" alt="Corredor com claraboia, sofá curvo e árvore ornamental" width="869" height="1302" loading="lazy" decoding="async" data-lightbox>
+            <picture>
+              <source srcset="assets/img/apoio-circulacao.webp" type="image/webp">
+              <img src="assets/img/apoio-circulacao.jpg" alt="Corredor com claraboia, sofá curvo e árvore ornamental" width="869" height="1302" loading="lazy" decoding="async" data-lightbox>
+            </picture>
             <figcaption>Área de circulação</figcaption>
           </figure>
           <figure>
-            <img src="assets/img/apoio-lavabo.jpg" alt="Corredor com espelho orgânico e lavatório" width="869" height="1302" loading="lazy" decoding="async" data-lightbox>
+            <picture>
+              <source srcset="assets/img/apoio-lavabo.webp" type="image/webp">
+              <img src="assets/img/apoio-lavabo.jpg" alt="Corredor com espelho orgânico e lavatório" width="869" height="1302" loading="lazy" decoding="async" data-lightbox>
+            </picture>
             <figcaption>Circulação e apoio</figcaption>
           </figure>
         </div>

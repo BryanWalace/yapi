@@ -73,3 +73,26 @@ Registro das etapas P2–P12 (PROMPTS.md), decisões e pendências.
 - Mobile (<768px): 1 coluna (eyebrow → título → texto → foto), fotos sangradas em largura total com 60vh, pares de fotos empilhados (S13 também), S12 com número + título na linha e descrição abaixo, cards de contato em 1 coluna, rodapés estáticos, tabela S4 mantida como tabela.
 - Abaixo de 1200px as quebras forçadas (↵) dos títulos/destaques são ignoradas (evitam palavras órfãs em colunas estreitas).
 - Bug corrigido: legenda da S13 coberta pela foto seguinte no mobile (`.zoom` com `height: 100%` dentro de item de grid).
+
+### P10 — Performance, acessibilidade e SEO ✅
+- **Imagens:** `.webp` gerados ao lado dos originais (`tools/make-webp.js`) e servidos via `<picture>` com fallback `.jpg/.png` (`picture { display: contents }` para não mudar o layout). Fotos 50–75% menores; logo da S16 226KB → 21KB. Hero com `srcset` 1280/1920/2400 e, **em tela retrato, um recorte 900×1350 (e 600×900) enquadrando o letreiro e a entrada** (no celular a foto 16:9 em `cover` mostraria só a árvore, ampliada).
+- `loading="lazy"` + `decoding="async"` em todas as imagens, exceto o hero (`fetchpriority="high"`); `width`/`height` em todas.
+- JS do header sem reflow forçado (posições medidas só no load/resize).
+- `robots.txt` (bloqueia `/reference/`). HTML validado com `html-validate` (0 erros).
+- Hierarquia: `h1` só no hero → `h2` títulos de seção → `h3` subtítulos. Skip link "Pular para o conteúdo", `:focus-visible` 2px `--c-gold`, todos os controles acessíveis por teclado.
+- `tools/check-content.js`: 136 trechos de texto + 17 alts de CONTENT.md presentes; title e description idênticos; correções do PDF aplicadas.
+- **Lighthouse (servidor local, sem compressão/cache):** mobile Performance 96 · Acessibilidade 96 · Boas práticas 100 · SEO 100; desktop 100 · 96 · 100 · 100. (Antes do WebP: mobile Performance 79, LCP 5,8s → 2,8s.)
+
+#### ⚠️ Contraste AA — decisão a revisar
+Mantive as cores dos slides (prioridade slide > DESIGN > CLAUDE). Pares da paleta que **não** atingem AA (4,5:1) em texto pequeno:
+
+| Par | Razão | Onde |
+|---|---|---|
+| `--c-gold` sobre `--c-paper` | 3,37 | eyebrows (15px), "E-MAIL"/"ENDEREÇO" |
+| `--c-gold` sobre `--c-row` | 2,98 | rótulos dos cards da S16 |
+| `--c-gold-warm` sobre `--c-cream` | 2,70 | eyebrow da S12 |
+| `--c-muted` sobre `--c-paper` | 4,21 | rodapés, legendas da S9 |
+| `--c-muted` sobre `--c-cream` | 4,06 | rodapés da S12 |
+| `--c-muted` sobre `--c-row` | 3,72 | "Coordenação do YAPI" |
+
+Textos dourados grandes (≥24px, p.ex. "Base em prontuários", "São Paulo", frase da S14, numeração) passam no critério de texto grande (3:1). O Lighthouse só reprova os rodapés porque, durante a auditoria, os eyebrows fora da tela estão com opacidade 0 (reveal) — **os eyebrows também reprovam AA**. Se quiser AA estrito: dourado `#966621` (4,58:1 sobre paper) e cinza `#716D64` (4,58:1 sobre cream) só em textos pequenos — fica fora da paleta, por isso não apliquei.

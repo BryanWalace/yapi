@@ -32,18 +32,27 @@ function initHeader() {
   const links = [...header.querySelectorAll('[data-nav-link]')];
   const targets = links.map((link) => document.getElementById(link.dataset.navLink));
   let ticking = false;
+  let solidFrom = 0;
+  let tops = [];
+  let current = null;
+
+  // Medidas lidas só no início, no resize e no load (sem reflow durante o scroll)
+  function measure() {
+    solidFrom = hero.offsetHeight - header.offsetHeight;
+    tops = targets.map((section) => (section ? section.offsetTop : Infinity));
+  }
 
   function update() {
     ticking = false;
     const y = window.scrollY;
-    header.classList.toggle('is-solid', y > hero.offsetHeight - header.offsetHeight);
+    header.classList.toggle('is-solid', y > solidFrom);
 
     // Ativo = o último destino do menu cujo topo já passou de 40% da tela
     const mark = y + window.innerHeight * 0.4;
     let active = -1;
-    targets.forEach((section, i) => {
-      if (section && section.offsetTop <= mark) active = i;
-    });
+    tops.forEach((top, i) => { if (top <= mark) active = i; });
+    if (active === current) return;
+    current = active;
     links.forEach((link, i) => {
       const on = i === active;
       link.classList.toggle('is-active', on);
@@ -59,8 +68,15 @@ function initHeader() {
     }
   }
 
+  function onResize() {
+    measure();
+    onScroll();
+  }
+
   window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll, { passive: true });
+  window.addEventListener('resize', onResize, { passive: true });
+  window.addEventListener('load', onResize);
+  measure();
   update();
 }
 
@@ -113,8 +129,9 @@ function initLightbox() {
     button.type = 'button';
     button.className = 'zoom';
     button.setAttribute('aria-haspopup', 'dialog');
-    img.replaceWith(button);
-    button.appendChild(img);
+    const media = img.closest('picture') || img;
+    media.replaceWith(button);
+    button.appendChild(media);
   });
 
   const box = document.createElement('div');
