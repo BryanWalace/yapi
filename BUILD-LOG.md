@@ -37,3 +37,12 @@ Registro das etapas P2–P12 (PROMPTS.md), decisões e pendências.
 - S9: "9" (110px, dourado), "consultórios médicos" 32px, legendas 16px `--c-muted`; fotos x 33,24%/69,3%.
 - Todas as fotos têm `data-lightbox` (JS no P6).
 - Espaçamentos medidos: parágrafos laterais com entrelinha 1,17 e 2,1em entre si; descrição da S9 com entrelinha 1,15.
+
+### P5 — S12 Suporte, S13 Apoio, S14 Viabilidade, S15 Princípios, S16 Contato ✅
+- S12 e S13 em Arial (`.font-alt`); margem lateral medida em 4,26% (62px), não 4,6%. Fontes medidas maiores que o DESIGN: eyebrow 17px, título 59,6px (S12) / 55px (S13), números 54,6px, títulos dos itens 35px, descrições 29px.
+- S12: lista em linhas de altura igual (16,5% do slide), com divisórias `--c-line` de x 14,08% a 94,3%. **Decisão:** no slide, a linha 04 e os números 02/03 estão um pouco deslocados (diagramação manual); usei a grade regular do DESIGN §4. "Contigência" → "Contingência" (correção permitida). "Organização operacional" a x 48,4%.
+- S13: **sem rodapé "YAPI PESQUISA CLÍNICA"** — o slide 13 não tem (slide > CLAUDE.md §5.7). Fotos 24,86% × 66,2%, centralizadas, com `data-lightbox`.
+- S14: destaque 28px / entrelinha 1,12; frase dourada 25,5px; lista com descrição 20,5px (largura medida pela quebra de linha).
+- S15: destaque 34,4px; propósito 25,5px `--c-beige`; valores com título 31,6px e descrição 22,3px. Mancha clara no canto inferior direito do slide = defeito do PDF, não reproduzida.
+- S16: painel `--c-sand` 32,3% × 91%; o logo original (com fundo sand embutido) funde-se ao painel. Cards `--c-row` sem raio; e-mail, endereço, WhatsApp e Instagram são links (externos com `target="_blank" rel="noopener"`). Ícones SVG inline monocromáticos `--c-ink`. Título 46px, nome 35,4px.
+- Comparação com Playwright em 1456×819 a partir desta etapa (na prática desde o P2): tudo dentro de ±5px.

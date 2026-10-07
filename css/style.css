@@ -366,6 +366,179 @@ figure img,
 }
 .consult-desc { margin-top: 24px; color: var(--c-ink-soft); }
 
+/* === S12 Suporte === */
+#suporte { color: var(--c-ink-warm); }
+.support-list { margin-top: 32px; }
+.support-list li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 16px;
+  align-items: baseline;
+  padding: 20px 0;
+  border-top: 1px solid var(--c-line);
+}
+.support-list li:first-child { border-top: 0; }
+.support-num {
+  font-size: clamp(1.9rem, 3vw, 2.8rem); /* ~44px */
+  font-weight: 700;
+  line-height: 1;
+  color: var(--c-gold-warm);
+}
+.support-title {
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  line-height: 1.15;
+}
+.support-desc {
+  grid-column: 1 / -1;
+  margin-top: 8px;
+  font-size: clamp(1.05rem, 1.75vw, 1.6rem); /* ~26px */
+  line-height: 1.27;
+  letter-spacing: 0;
+}
+
+/* === S13 Apoio === */
+.apoio-photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 32px;
+}
+.apoio-photos img { height: auto; }
+.apoio-photos figcaption {
+  margin-top: 10px;
+  font-size: clamp(.85rem, 1.17vw, 1.1rem); /* 17px */
+  text-align: center;
+  color: var(--c-beige-light);
+}
+
+/* === S14 Viabilidade === */
+.viab-text { margin-top: 28px; color: var(--c-ink-soft); }
+.viab-text .lead { color: var(--c-ink-soft); }
+.viab-text p + p { margin-top: 1.2em; }
+.viab-highlight { color: var(--c-gold); }
+.viab-list { margin-top: 40px; }
+.viab-list li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 20px;
+  align-items: baseline;
+}
+.viab-list li + li { margin-top: 28px; }
+.viab-num {
+  font-size: clamp(1.3rem, 2.05vw, 1.9rem);
+  font-weight: 700;
+  color: var(--c-gold);
+}
+.viab-title {
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: .005em;
+}
+.viab-desc {
+  grid-column: 2;
+  margin-top: 8px;
+  font-size: var(--fs-small);
+  line-height: 1.2;
+  color: var(--c-ink-soft);
+}
+
+/* === S15 Princípios === */
+.principios-text { margin-top: 28px; }
+.principios-purpose { margin-top: 1.2em; color: var(--c-beige); }
+.values { margin-top: 40px; }
+.value + .value { margin-top: 24px; }
+.value dt {
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: .005em;
+  color: var(--c-beige);
+}
+.value dd {
+  margin-top: 8px;
+  font-size: var(--fs-small);
+  line-height: 1.2;
+  color: var(--c-on-dark);
+}
+
+/* === S16 Contato === */
+.contato-panel {
+  margin: -72px calc(-1 * var(--gutter)) 48px;
+  padding: 56px var(--gutter) 48px;
+  background: var(--c-sand);
+  text-align: center;
+  color: var(--c-ink);
+}
+.contato-logo { width: 160px; margin: 0 auto; }
+.contato-panel-title {
+  margin-top: 24px;
+  font-size: clamp(1.8rem, 3vw, 2.9rem); /* 44px */
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: var(--ls-title);
+}
+.contato-panel-place {
+  margin-top: 16px;
+  font-size: clamp(.95rem, 1.24vw, 1.15rem); /* 18px */
+  line-height: 1.2;
+}
+#contato .section-title { font-size: clamp(1.8rem, 3vw, 2.9rem); } /* 44px */
+.contact-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 32px;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px;
+  background: var(--c-row);
+  color: var(--c-ink);
+  transition: background-color .2s ease-out;
+}
+a.card:hover { background: var(--c-line); }
+.card-label {
+  font-size: var(--fs-eyebrow);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--c-gold);
+}
+.card-name {
+  margin-top: 18px;
+  font-size: clamp(1.5rem, 2.34vw, 2.2rem); /* 34px */
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+.card-role {
+  margin-top: 6px;
+  font-size: clamp(1rem, 1.51vw, 1.4rem); /* 22px */
+  color: var(--c-muted);
+}
+.card-value {
+  margin-top: 14px;
+  font-size: clamp(1rem, 1.51vw, 1.4rem); /* 22px */
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+.card-value--sm { font-size: clamp(.95rem, 1.24vw, 1.15rem); } /* 18px */
+.card--icon {
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 18px;
+}
+.card-icon { width: 40px; height: 40px; flex: none; color: var(--c-ink); }
+.card-value--strong {
+  margin: 0;
+  font-size: clamp(1.05rem, 1.65vw, 1.55rem); /* 24px */
+  font-weight: 700;
+}
+
 /* ==========================================================================
    Desktop — grade do slide (≥1200px)
    ========================================================================== */
@@ -547,9 +720,166 @@ figure img,
     margin: 0;
   }
   .side-text p { line-height: 1.17; }
-  .side-text p + p { margin-top: 2.1em; }
+  .side-text p + p { margin-top: 2.35em; }
   .consult-num-label { margin-top: .7vw; white-space: nowrap; }
   .consult-desc { margin-top: 5vw; line-height: 1.15; }
+
+  /* S12 */
+  #suporte .section-head,
+  #apoio .section-head { left: 4.26%; top: 5.5%; }
+  #suporte .section-foot { left: 4.26%; }
+  #suporte .section-foot--center { left: 48.4%; }
+  #suporte .eyebrow, #apoio .eyebrow { font-size: 1.18vw; } /* 17px medido */
+  #suporte .section-title { font-size: 4.1vw; margin-top: 3.06vw; } /* 59.6px medido */
+  .support-list {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 24.7%;
+    height: 66%;
+    margin: 0;
+  }
+  .support-list li {
+    position: relative;
+    display: block;
+    height: 25%;
+    padding: 0;
+    border: 0;
+  }
+  .support-list li > * {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+  }
+  .support-num   { left: 4.26%; font-size: 3.75vw; } /* 54.6px medido */
+  .support-list .support-num  { margin-top: -.27vw; }
+  .support-list .support-desc { margin-top: .48vw; }
+  .support-title { font-size: 2.42vw; } /* 35px medido */
+  .support-title { left: 14.97%; }
+  .support-desc  { left: 50.34%; width: 42%; font-size: 2vw; line-height: 1.26; } /* 29px medido */
+  .support-list li:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 14.08%;
+    right: 5.7%;
+    bottom: 0;
+    height: 1px;
+    background: var(--c-line);
+  }
+
+  /* S13 */
+  #apoio .section-head { top: 5.1%; }
+  #apoio .section-title { font-size: 3.79vw; margin-top: 2.64vw; } /* 55px medido */
+  .apoio-photos { display: block; margin: 0; }
+  .apoio-photos figure {
+    position: absolute;
+    top: 23.08%;
+    width: 24.86%;
+    height: 66.2%;
+  }
+  .apoio-photos figure:first-child { left: 23.21%; }
+  .apoio-photos figure:last-child  { left: 51.92%; }
+  .apoio-photos img { height: 100%; }
+  .apoio-photos figcaption {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: .96vw;
+  }
+
+  /* S14 */
+  .viab-text {
+    position: absolute;
+    left: 4.6%;
+    top: 28.7%;
+    width: 41.5%;
+    margin: 0;
+  }
+  .viab-text .lead { font-size: 1.93vw; line-height: 1.12; } /* 28px medido */
+  .viab-text p:nth-child(2) { margin-top: 5vw; line-height: 1.15; }
+  .viab-text p:nth-child(3) { margin-top: 7.55vw; font-size: 1.75vw; line-height: 1.2; }
+  .viab-list {
+    position: absolute;
+    left: 52.6%;
+    top: 28.4%;
+    width: 41.8%;
+    margin: 0;
+  }
+  .viab-list li {
+    display: block;
+    position: relative;
+    height: 8.77vw;
+    padding-left: 6.05vw;
+  }
+  .viab-list li + li { margin: 0; }
+  .viab-num { position: absolute; left: 0; top: 0; }
+  .viab-desc { margin-top: .3vw; font-size: 1.41vw; line-height: 1.2; } /* 20.5px medido */
+
+  /* S15 */
+  .principios-text {
+    position: absolute;
+    left: 4.6%;
+    top: 33%;
+    width: 42%;
+    margin: 0;
+  }
+  .principios-text .lead { font-size: 2.36vw; line-height: 1.13; } /* 34.4px medido */
+  .principios-purpose { margin-top: 7.4vw; font-size: 1.75vw; line-height: 1.12; }
+  .values {
+    position: absolute;
+    left: 53.4%;
+    top: 27.7%;
+    width: 39%;
+    margin: 0;
+  }
+  .value { height: 8.06vw; }
+  .value dt { font-size: 2.17vw; } /* 31.6px medido */
+  .value dd { margin-top: .67vw; font-size: 1.53vw; line-height: 1.2; } /* 22.3px medido */
+  .value + .value { margin: 0; }
+
+  /* S16 */
+  .contato-panel {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 32.3%;
+    height: 91.1%;
+    margin: 0;
+    padding: 0;
+  }
+  .contato-logo {
+    position: absolute;
+    left: 50%;
+    top: 12.9%;
+    width: 53.8%;
+    margin: 0;
+    transform: translateX(-50%);
+  }
+  .contato-panel-title { position: absolute; left: 0; right: 0; top: 70.6%; margin: 0; font-size: 3.13vw; }
+  .contato-panel-place { position: absolute; left: 0; right: 0; top: 86.5%; margin: 0; }
+  #contato .section-head { left: 36.68%; top: 6.6%; }
+  #contato .section-title { margin-top: 3.13vw; font-size: 3.17vw; } /* 46px medido */
+  .contact-cards {
+    position: absolute;
+    left: 36.68%;
+    top: 31.4%;
+    width: 58.8%;
+    margin: 0;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 12.2vw 8.24vw 6.73vw;
+    gap: 1.51vw;
+  }
+  .card { justify-content: flex-start; padding: 1.79vw 2.2vw 0; }
+  .card--main { grid-column: 1 / -1; padding-top: 1.92vw; }
+  .card--main .card-label { font-size: 1.13vw; }
+  .card-name { margin-top: 1.8vw; font-size: 2.43vw; }
+  .card-role { margin-top: .55vw; font-size: 1.54vw; line-height: 1.25; }
+  .card-value { margin-top: 1.03vw; white-space: nowrap; }
+  .card--email .card-value { font-size: 1.44vw; } /* 21px medido */
+  .card--icon { justify-content: flex-start; padding-top: 0; gap: 1.1vw; }
+  .card-icon { width: 3.25vw; height: 3.25vw; margin-left: -.35vw; }
 }
 
 /* === Responsivo: tablet === */
