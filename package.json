@@ -1,23 +1,21 @@
 {
-  "name": "yapi-kit",
+  "name": "yapi-pesquisa-clinica",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
+  "description": "Site institucional one-page do YAPI Pesquisa Clínica (HTML, CSS e JS puros, sem build).",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node tools/serve.js",
+    "test": "node tools/check-ui.js && node tools/check-content.js && html-validate index.html",
+    "compare": "node tools/compare.js && node tools/diff.js",
+    "responsive": "node tools/responsive.js",
+    "webp": "node tools/make-webp.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/BryanWalace/yapi.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Bryan Walace Cabral de Paula",
   "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/BryanWalace/yapi/issues"
-  },
-  "homepage": "https://github.com/BryanWalace/yapi#readme",
   "devDependencies": {
     "html-validate": "^11.16.2",
     "lighthouse": "^13.5.0",

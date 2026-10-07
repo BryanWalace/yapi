@@ -1,0 +1,14 @@
+# Só o site estático vai para a Vercel
+reference/
+*.md
+PROMPTS.md
+LEIA-ME.txt
+tools/
+tmp/
+node_modules/
+package.json
+package-lock.json
+.htmlvalidate.json
+.claude/
+# Arquivo errado do kit (contém o slide 08, não o mapa); o site usa mapa-conectividade-s05.*
+assets/img/mapa-conectividade.jpg

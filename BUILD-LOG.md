@@ -126,3 +126,10 @@ Screenshots de cada seção em `tmp/compare/sNN.png`, composições slide × sit
 | S16 Contato | ✅ | 5,3 | ±3px. |
 
 \* média da diferença absoluta por pixel (0–255) entre o slide e o screenshot; abaixo de ~10 = só antialiasing e textura de foto.
+
+### P12 — Deploy ✅
+- `vercel.json`: site estático (`framework: null`, sem install/build, `outputDirectory: "."`), `Cache-Control: public, max-age=31536000, immutable` em `/assets/*`; CSS/JS com revalidação (os nomes não têm hash); `X-Content-Type-Options` e `Referrer-Policy`.
+- `.vercelignore`: `reference/`, `*.md` (inclui PROMPTS.md), `LEIA-ME.txt`, `tools/`, `tmp/`, `node_modules/`, `package*.json`, `.claude/` e o `mapa-conectividade.jpg` errado do kit.
+- `README.md`: como rodar localmente (`node tools/serve.js`, `npx serve .` ou `python -m http.server`) e publicar (`vercel --prod`).
+- `package.json` com scripts `start`, `test`, `compare`, `responsive`, `webp` (só ferramentas de desenvolvimento; o site não depende de nada).
+- Não testado aqui: o deploy real na Vercel (precisa da sua conta/CLI autenticada).
