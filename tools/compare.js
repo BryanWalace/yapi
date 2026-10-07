@@ -37,7 +37,7 @@ function serve() {
   const browser = await chromium.launch();
   const page = await browser.newPage({ viewport: { width: 1456, height: 819 }, reducedMotion: 'reduce' });
   await page.goto(`http://localhost:${server.address().port}/index.html`, { waitUntil: 'networkidle' });
-  await page.addStyleTag({ content: '.site-header,.wa-float{display:none!important}' });
+  await page.addStyleTag({ content: '.site-header,.wa-float,.skip-link{display:none!important}' });
   for (const n of list) {
     const nn = String(n).padStart(2, '0');
     const el = page.locator(`#${IDS[n - 1]}`);

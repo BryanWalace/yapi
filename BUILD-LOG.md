@@ -64,3 +64,12 @@ Registro das etapas P2–P12 (PROMPTS.md), decisões e pendências.
 - Hero: zoom-out 1,06 → 1 em 2,5s.
 - `prefers-reduced-motion`: sem reveal, sem contador animado, sem zoom, sem scroll suave.
 - Bug encontrado pelo teste: no mobile "+450 mil" quebrava em 2 linhas e a contagem mudava a altura da página (âncoras deslocadas em 41px). Números com `white-space: nowrap` e `min(var(--fs-stat), 8.4vw)`.
+
+### P8 — Responsivo ✅
+- `tools/responsive.js` tira screenshots por seção em 375, 768, 1024, 1440 e 1920px e lista elementos que vazam a viewport. **Resultado final: 0px de scroll horizontal em todas as larguras.**
+- **Bug corrigido:** com `aspect-ratio: 16/9` + `min-height: 100vh` na própria seção, telas mais altas que 16:9 (p.ex. 1440×900) ganhavam 160px de scroll horizontal (o min-height vira largura mínima pelo aspect-ratio). Agora só o `.slide` interno é 16:9; a seção tem `min-height: 100vh` e centraliza o slide (DESIGN §3).
+- **Decisão (desktop ≥1200px):** tipografia 100% proporcional ao slide (tokens em `vw`, sem os tetos dos `clamp()`), para que 1920px pareça o slide ampliado; os `clamp()` do DESIGN continuam valendo abaixo de 1200px.
+- Tablet (768–1199px): sem aspect-ratio, padding vertical 96px; 2 colunas com foto sangrada nas S2, S3, S6, S7 e painel bege sangrado na S16; pares de fotos lado a lado com a mesma altura; S14/S15 em 2 colunas.
+- Mobile (<768px): 1 coluna (eyebrow → título → texto → foto), fotos sangradas em largura total com 60vh, pares de fotos empilhados (S13 também), S12 com número + título na linha e descrição abaixo, cards de contato em 1 coluna, rodapés estáticos, tabela S4 mantida como tabela.
+- Abaixo de 1200px as quebras forçadas (↵) dos títulos/destaques são ignoradas (evitam palavras órfãs em colunas estreitas).
+- Bug corrigido: legenda da S13 coberta pela foto seguinte no mobile (`.zoom` com `height: 100%` dentro de item de grid).

@@ -703,8 +703,10 @@ html.is-locked body { overflow: hidden; }
 .zoom {
   display: block;
   width: 100%;
-  height: 100%;
   cursor: zoom-in;
+}
+@media (min-width: 1200px) {
+  .zoom { height: 100%; }
 }
 .zoom img { width: 100%; height: 100%; object-fit: cover; }
 
@@ -757,11 +759,27 @@ html.is-locked body { overflow: hidden; }
    Desktop — grade do slide (≥1200px)
    ========================================================================== */
 @media (min-width: 1200px) {
+  /* Tipografia 100% proporcional ao slide de 1456px (os clamp() valem só abaixo de 1200px) */
+  :root {
+    --fs-hero:    4.7vw;
+    --fs-display: 5vw;
+    --fs-number:  7.6vw;
+    --fs-h1:      3.7vw;
+    --fs-stat:    4.7vw;
+    --fs-h2:      2.5vw;
+    --fs-h3:      2.05vw;
+    --fs-lead:    2.05vw;
+    --fs-body:    1.65vw;
+    --fs-small:   1.3vw;
+    --fs-eyebrow: 1.03vw;
+    --fs-foot:    .9vw;
+  }
+  /* A seção tem no mínimo 100vh e cresce até a altura do .slide (16:9).
+     (aspect-ratio na própria seção transferiria o min-height para uma largura mínima.) */
   .section {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    aspect-ratio: 16 / 9;
     min-height: 100vh;
     padding: 0;
     overflow: hidden;
@@ -797,8 +815,23 @@ html.is-locked body { overflow: hidden; }
   .bleed--right { right: 0; }
   .bleed--left  { left: 0; }
 
+  /* Tamanhos próprios (fora dos tokens) também proporcionais ao slide */
+  .hero-sub                 { font-size: 1.51vw; }
+  .stat-label               { font-size: 1.575vw; }
+  .stat--e .stat-num        { font-size: 3.48vw; }
+  .areas-table thead th     { font-size: 1.34vw; }
+  .areas-table tbody td     { font-size: 1.89vw; }
+  .photo-pair figcaption    { font-size: 1.1vw; }
+  .consult-num-label        { font-size: 2.2vw; }
+  .apoio-photos figcaption  { font-size: 1.17vw; }
+  .viab-num                 { font-size: 2.05vw; }
+  .estrutura-title          { font-size: 4.85vw; }
+  .contato-panel-place      { font-size: 1.24vw; }
+  .card-value               { font-size: 1.51vw; }
+  .card-value--sm           { font-size: 1.24vw; }
+  .card-value--strong       { font-size: 1.65vw; }
+
   /* S01 */
-  .section--hero { aspect-ratio: auto; }
   .hero-content { left: 4.6%; right: auto; }
   .hero-rule { width: 9.1vw; }
   .hero-content .eyebrow { margin-top: 1.58vw; }
@@ -1096,9 +1129,74 @@ html.is-locked body { overflow: hidden; }
   .card-icon { width: 3.25vw; height: 3.25vw; margin-left: -.35vw; }
 }
 
-/* === Responsivo: tablet === */
+/* === Responsivo: quebras forçadas (↵) do slide só na grade de desktop === */
+@media (max-width: 1199px) {
+  .section-title br, .stat-label br, .lead br, .estrutura-list br { display: none; }
+}
+
+/* === Responsivo: mobile (<768px) === */
+@media (max-width: 767px) {
+  .apoio-photos { grid-template-columns: 1fr; }
+}
+
+/* === Responsivo: tablet (768–1199px) === */
 @media (min-width: 768px) and (max-width: 1199px) {
   .section:not(.section--hero) { padding-top: 96px; padding-bottom: 64px; }
+
+  /* 2 colunas onde há foto sangrada (S2, S3, S6, S7) */
+  .bleed {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 40%;
+    height: auto;
+    margin: 0;
+  }
+  .bleed--right { right: 0; }
+  .bleed--left  { left: 0; }
+  #o-centro .slide, #numeros .slide, #estrutura .slide { width: 54%; }
+  #insercao .slide, #insercao .section-foot { margin-left: 44%; }
+  .stat-num { font-size: min(var(--fs-stat), 4.4vw); }
+
+  /* Pares de fotos lado a lado, com a mesma altura (colunas na proporção das fotos) */
+  .photo-pair {
+    display: grid;
+    grid-template-columns: 1.19fr 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+  .photo-pair--consult { grid-template-columns: 1.32fr 1fr; }
+  .photo-pair figure + figure { margin-top: 0; }
+
+  /* S14 e S15: texto à esquerda, lista à direita */
+  #viabilidade .slide,
+  #principios .slide {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 48px;
+    align-items: start;
+  }
+  #viabilidade .section-head,
+  #principios .section-head { grid-column: 1 / -1; }
+
+  /* S13: fotos centralizadas */
+  .apoio-photos { max-width: 720px; margin-inline: auto; }
+
+  /* S16: painel bege como coluna esquerda sangrada */
+  .contato-panel {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 36%;
+    margin: 0;
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #contato .slide, #contato .section-foot { margin-left: 40%; }
 }
 
 /* === Movimento (DESIGN §7) — a classe é aplicada pelo JS ===
