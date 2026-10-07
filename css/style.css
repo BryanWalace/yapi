@@ -327,6 +327,45 @@ figure img,
 .estrutura-text .lead { margin-top: 32px; }
 .estrutura-list { margin-top: 24px; color: var(--c-beige); }
 
+/* === S08–S11 Ambientes: .photo-pair + .side-text === */
+.side-text { margin-top: 28px; color: var(--c-ink-soft); }
+.side-title {
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  line-height: 1.17;
+  letter-spacing: .005em;
+  color: var(--c-ink);
+}
+.side-text p { margin-top: .5em; }
+.side-text p + p { margin-top: 1.2em; }
+.side-text p + .side-title { margin-top: 1em; }
+
+.photo-pair { margin-top: 32px; }
+.photo-pair figure + figure { margin-top: 16px; }
+.photo-pair img { height: auto; }
+.photo-pair figcaption {
+  margin-top: 10px;
+  font-size: clamp(.85rem, 1.1vw, 1.05rem); /* 16px */
+  color: var(--c-muted);
+}
+
+/* === S09 Consultórios === */
+.consult-intro { margin-top: 28px; }
+.consult-num {
+  display: block;
+  font-size: var(--fs-number);
+  font-weight: 700;
+  line-height: .9;
+  color: var(--c-gold);
+}
+.consult-num-label {
+  display: block;
+  font-size: clamp(1.4rem, 2.2vw, 2.1rem); /* 32px */
+  line-height: 1.2;
+  color: var(--c-ink);
+}
+.consult-desc { margin-top: 24px; color: var(--c-ink-soft); }
+
 /* ==========================================================================
    Desktop — grade do slide (≥1200px)
    ========================================================================== */
@@ -470,6 +509,47 @@ figure img,
   .estrutura-text .lead { top: 58.65%; margin: 0; line-height: 1.1; }
   .estrutura-list { top: 76.5%; line-height: 1.17; }
   .estrutura-photo { left: 53.16%; bottom: 8.9%; }
+
+  /* S08–S11 */
+  .photo-pair { margin: 0; }
+  .photo-pair figure {
+    position: absolute;
+    top: 26.86%;
+    height: 56.53%;
+    margin: 0;
+  }
+  .photo-pair figure + figure { margin-top: 0; }
+  .photo-pair img { height: 100%; }
+  .photo-pair__a { left: 4.6%;   width: 31.66%; }
+  .photo-pair__b { left: 37.77%; width: 26.51%; }
+  .side-text {
+    position: absolute;
+    left: 67.58%;
+    top: 28.45%;
+    width: 27%;
+    margin: 0;
+  }
+
+  /* S09 */
+  .photo-pair--consult .photo-pair__a { left: 33.24%; width: 34.62%; }
+  .photo-pair--consult .photo-pair__b { left: 69.3%;  width: 26.17%; }
+  .photo-pair figcaption {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 1.7vw;
+  }
+  .consult-intro {
+    position: absolute;
+    left: 4.6%;
+    top: 32.4%;
+    width: 21%;
+    margin: 0;
+  }
+  .side-text p { line-height: 1.17; }
+  .side-text p + p { margin-top: 2.1em; }
+  .consult-num-label { margin-top: .7vw; white-space: nowrap; }
+  .consult-desc { margin-top: 5vw; line-height: 1.15; }
 }
 
 /* === Responsivo: tablet === */

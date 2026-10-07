@@ -30,3 +30,10 @@ Registro das etapas P2–P12 (PROMPTS.md), decisões e pendências.
 - S7: título 3 linhas medido em 70,5px com entrelinha 1,04 (DESIGN: 72px); foto sangrada até 91%.
 - Calibração global: `.lead` com `letter-spacing: -0.015em`; corpo com `+0.006em` (larguras medidas no slide).
 - Ciclo de correção (2 rodadas): tudo dentro de ±3px do slide.
+
+### P4 — S8 Recepção, S9 Consultórios, S10 Tecnologias, S11 Coordenação ✅
+- Componente `.photo-pair` (foto A 31,66% / foto B 26,51%, gap 1,5%, topo 26,86%, altura 56,53%) + `.side-text` (x 67,58%, largura 27% — medida pela quebra de linha do slide). Fotos idênticas ao slide (diferença ≤1px).
+- No DOM, o texto vem antes das fotos (ordem do mobile: eyebrow → título → texto → foto).
+- S9: "9" (110px, dourado), "consultórios médicos" 32px, legendas 16px `--c-muted`; fotos x 33,24%/69,3%.
+- Todas as fotos têm `data-lightbox` (JS no P6).
+- Espaçamentos medidos: parágrafos laterais com entrelinha 1,17 e 2,1em entre si; descrição da S9 com entrelinha 1,15.
