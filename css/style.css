@@ -851,7 +851,8 @@ html.is-locked body { overflow: hidden; }
     width: 50.6%;
     margin: 0;
   }
-  .centro-text p:nth-child(2) { margin-top: 5.2vw; text-align: justify; }
+  .centro-text { letter-spacing: 0; } /* calibrado no P2 sem o tracking do corpo */
+  .centro-text p:nth-child(2) { margin-top: 5.2vw; text-align: justify; width: 98.1%; } /* 723px no slide */
   .centro-text p:nth-child(3) { margin-top: 3.65vw; text-align: justify; width: 95.3%; }
   .centro-photo { left: 57.4%; }
 
@@ -972,6 +973,7 @@ html.is-locked body { overflow: hidden; }
   }
   .side-text p { line-height: 1.17; }
   .side-text p + p { margin-top: 2.35em; }
+  .side-text p + .side-title { margin-top: 1.3em; }
   .consult-num-label { margin-top: .7vw; white-space: nowrap; }
   .consult-desc { margin-top: 5vw; line-height: 1.15; }
 
@@ -1066,7 +1068,7 @@ html.is-locked body { overflow: hidden; }
   }
   .viab-list li + li { margin: 0; }
   .viab-num { position: absolute; left: 0; top: 0; }
-  .viab-desc { margin-top: .3vw; font-size: 1.41vw; line-height: 1.2; } /* 20.5px medido */
+  .viab-desc { margin-top: .3vw; font-size: 1.44vw; line-height: 1.2; } /* 21px medido */
 
   /* S15 */
   .principios-text {
@@ -1076,7 +1078,7 @@ html.is-locked body { overflow: hidden; }
     width: 42%;
     margin: 0;
   }
-  .principios-text .lead { font-size: 2.36vw; line-height: 1.13; } /* 34.4px medido */
+  .principios-text .lead { font-size: 2.4vw; line-height: 1.13; letter-spacing: 0; } /* 35px medido; sem o tracking dos destaques */
   .principios-purpose { margin-top: 7.4vw; font-size: 1.75vw; line-height: 1.12; }
   .values {
     position: absolute;
@@ -1103,7 +1105,7 @@ html.is-locked body { overflow: hidden; }
   .contato-logo {
     position: absolute;
     left: 50%;
-    top: 12.9%;
+    top: 14.35%;
     width: 53.8%;
     margin: 0;
     transform: translateX(-50%);

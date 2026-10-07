@@ -41,7 +41,8 @@ function serve() {
   for (const n of list) {
     const nn = String(n).padStart(2, '0');
     const el = page.locator(`#${IDS[n - 1]}`);
-    await el.scrollIntoViewIfNeeded();
+    // Rola até o topo exato da seção (scrollIntoView respeitaria o scroll-margin-top do header)
+    await el.evaluate((node) => window.scrollTo(0, node.offsetTop));
     await page.evaluate(() => document.querySelectorAll('img').forEach((i) => { i.loading = 'eager'; }));
     await page.waitForTimeout(250);
     const shot = path.join(OUT, `s${nn}.png`);

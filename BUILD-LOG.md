@@ -96,3 +96,33 @@ Mantive as cores dos slides (prioridade slide > DESIGN > CLAUDE). Pares da palet
 | `--c-muted` sobre `--c-row` | 3,72 | "Coordenação do YAPI" |
 
 Textos dourados grandes (≥24px, p.ex. "Base em prontuários", "São Paulo", frase da S14, numeração) passam no critério de texto grande (3:1). O Lighthouse só reprova os rodapés porque, durante a auditoria, os eyebrows fora da tela estão com opacidade 0 (reveal) — **os eyebrows também reprovam AA**. Se quiser AA estrito: dourado `#966621` (4,58:1 sobre paper) e cinza `#716D64` (4,58:1 sobre cream) só em textos pequenos — fica fora da paleta, por isso não apliquei.
+
+### P11 — Comparação final (Playwright, 1456×819) ✅
+Screenshots de cada seção em `tmp/compare/sNN.png`, composições slide × site em `sNN-cmp.png` e mapas de diferença por pixel em `diff-sheet.png` (`tools/compare.js` + `tools/diff.js`). Posições e larguras de texto medidas com `tools/measure.js`.
+
+**Correções feitas nesta etapa** (commit `fix(secoes)`):
+- `compare.js` rolava com `scrollIntoView`, que respeita o `scroll-margin-top` do header → os últimos 64px dos screenshots vinham da seção seguinte. Agora rola até o topo exato (o site estava correto).
+- S2: o tracking do corpo adicionado no P3 fazia "multidisciplinar" descer de linha; o 2º parágrafo justificado estava 14px mais largo que no slide (723px).
+- S15: o destaque usava o tracking apertado dos outros destaques e "que" subia de linha; corrigido para 35px sem tracking.
+- S16: logo 11px mais baixo; S11: 2º bloco lateral +9px; S14: descrições da lista 21px.
+
+| Seção | Igual? | Diferença média* | Diferenças restantes |
+|---|---|---|---|
+| S1 Hero | ✅ | 8,6 | Textos alinhados (±2px). Diferença vem da foto: o overlay do DESIGN não reproduz exatamente o escurecimento do PDF. |
+| S2 O Centro | ✅ | 9,0 | Textos e quebras iguais; diferença na textura da foto (reamostragem). |
+| S3 Números | ✅ | 9,0 | Filete bege no topo da foto não reproduzido (defeito do PDF); demais ±2px. |
+| S4 Áreas | ✅ | 4,5 | Coluna de números ~3px à direita. |
+| S5 Localização | ✅ | 3,8 | Mapa recortado do próprio slide (resolução limitada — ver pendências). |
+| S6 Inserção | ✅ | 6,1 | ±2px. |
+| S7 Estrutura | ✅ | 3,2 | Faixa espelhada sob a foto não reproduzida (defeito do PDF). |
+| S8 Recepção | ✅ | 3,7 | ±2px. |
+| S9 Consultórios | ✅ | 3,3 | Legendas 1px. |
+| S10 Tecnologias | ✅ | 3,4 | ±3px. |
+| S11 Coordenação | ✅ | 5,4 | ±4px no 2º bloco. |
+| S12 Suporte | ⚠️ quase | 8,5 | Grade regular (DESIGN) × diagramação irregular do slide: descrições até 7px, linha 04 deslocada 15px no slide. Intencional. |
+| S13 Apoio | ✅ | 1,8 | Sem rodapé, como no slide. |
+| S14 Viabilidade | ✅ | 6,8 | ±3px. |
+| S15 Princípios | ✅ | 6,7 | Mancha clara no canto do slide não reproduzida (defeito do PDF). |
+| S16 Contato | ✅ | 5,3 | ±3px. |
+
+\* média da diferença absoluta por pixel (0–255) entre o slide e o screenshot; abaixo de ~10 = só antialiasing e textura de foto.
